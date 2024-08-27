@@ -8,26 +8,27 @@
 #include "OPFilterFaceMaskFilter.hpp"
 
 
-void OPFilterFaceMaskFilter::render() {
+std::shared_ptr<OPFilterFrameBufferBox> OPFilterFaceMaskFilter::render() {
     if (infoCenter.expired()) {
-        return;
+        return nullptr;
     }
-    if (inputInfos.size() == 0 || inputInfos.front()->textureId == 0) {
-        return;
+    if (inputInfos.size() == 0 || inputInfos.front()->frameBufferBox.get() == nullptr) {
+        return nullptr;
     }
     
     auto info = infoCenter.lock();
-    frameBufferBox = info->bufferCache->fetchFramebufferForSize(info->width, info->height);
+    std::shared_ptr<OPFilterFrameBufferBox> frameBufferBox = info->bufferCache->fetchFramebufferForSize(info->width, info->height);
     frameBufferBox->frameBuffer->activateFramebuffer();
     
     //1.设置视口大小
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
     
+    
     renderTexture(info);
     renderFaceMask(info);
     
-    outputTexture = frameBufferBox->frameBuffer->texture;
+    return frameBufferBox;
 }
 
 void OPFilterFaceMaskFilter::renderTexture(std::shared_ptr<OPFilterRenderFilterInfoCenter> info) {
@@ -73,8 +74,8 @@ void OPFilterFaceMaskFilter::renderTexture(std::shared_ptr<OPFilterRenderFilterI
     glVertexAttribPointer(textCoor, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*5, (float *)NULL + 3);
     
     GLuint mapUniform = program->uniformIndex("inputImageTexture");
-    glActiveTexture(GL_TEXTURE0 + mapUniform);
-    glBindTexture(GL_TEXTURE_2D, inputInfos.front()->textureId);
+    glActiveTexture(GL_TEXTURE0+mapUniform);
+    glBindTexture(GL_TEXTURE_2D, inputInfos.front()->frameBufferBox->frameBuffer->texture);
     //12.绘图
     glDrawArrays(GL_TRIANGLES, 0, 6);
 }

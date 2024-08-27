@@ -25,25 +25,31 @@ public:
 
 };
 
-class OPFilterInputTexture {
+class OPFilterInputInfo {
 public:
     std::weak_ptr<OPFilterInOut> InputFilter;
-    int textureId = 0;
+    // target会保存上一个的framebuffer，target render结束释放
+    std::shared_ptr<OPFilterFrameBufferBox> frameBufferBox;
 };
+
+class OPFilterOutputInfo {
+public:
+    std::shared_ptr<OPFilterInOut> outputFilter;
+    // 在输出目标中的index
+    int index = -1;
+};
+
 
 class OPFilterInOut : public std::enable_shared_from_this<OPFilterInOut> {
     
 private:
-    void updateInputTextureIds();
     void clearInputTextureIds();
 protected:
-    std::vector<std::shared_ptr<OPFilterInOut>> targets;
-    std::vector<std::shared_ptr<OPFilterInputTexture>> inputInfos;
+    std::vector<std::shared_ptr<OPFilterOutputInfo>> targets;
+    std::vector<std::shared_ptr<OPFilterInputInfo>> inputInfos;
     std::weak_ptr<OPFilterRenderFilterInfoCenter> infoCenter;
     
-    int outputTexture;
-    
-    virtual void render();
+    virtual std::shared_ptr<OPFilterFrameBufferBox> render();
     
 public:
     OPFilterInOut() {}

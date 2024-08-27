@@ -10,16 +10,16 @@
 #include <OpenGLES/ES2/glext.h>
 
 
-void OPFilterFacePointsFilter::render() {
+std::shared_ptr<OPFilterFrameBufferBox> OPFilterFacePointsFilter::render() {
     if (infoCenter.expired()) {
-        return;
+        return nullptr;
     }
-    if (inputInfos.size() == 0 || inputInfos.front()->textureId == 0) {
-        return;
+    if (inputInfos.size() == 0 || inputInfos.front()->frameBufferBox.get() == nullptr) {
+        return nullptr;
     }
     
     auto info = infoCenter.lock();
-    frameBufferBox = info->bufferCache->fetchFramebufferForSize(info->width, info->height);
+    std::shared_ptr<OPFilterFrameBufferBox> frameBufferBox = info->bufferCache->fetchFramebufferForSize(info->width, info->height);
     frameBufferBox->frameBuffer->activateFramebuffer();
     
     //1.设置视口大小
@@ -28,8 +28,7 @@ void OPFilterFacePointsFilter::render() {
     
     renderTexture(info);
     renderFacePoints(info);
-    
-    outputTexture = frameBufferBox->frameBuffer->texture;
+    return frameBufferBox;
 }
 
 void OPFilterFacePointsFilter::renderTexture(std::shared_ptr<OPFilterRenderFilterInfoCenter> info) {
@@ -76,7 +75,7 @@ GLfloat attrArr[] =
     
     GLuint mapUniform = program->uniformIndex("inputImageTexture");
     glActiveTexture(GL_TEXTURE0 + mapUniform);
-    glBindTexture(GL_TEXTURE_2D, inputInfos.front()->textureId);
+    glBindTexture(GL_TEXTURE_2D, inputInfos.front()->frameBufferBox->frameBuffer->texture);
     //12.绘图
     glDrawArrays(GL_TRIANGLES, 0, 6);
 }

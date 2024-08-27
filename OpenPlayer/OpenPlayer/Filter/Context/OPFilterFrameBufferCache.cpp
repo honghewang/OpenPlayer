@@ -28,30 +28,40 @@ std::shared_ptr<OPFilterFrameBufferBox> OPFilterFrameBufferCache::fetchFramebuff
 std::shared_ptr<OPFilterFrameBufferBox> OPFilterFrameBufferCache::fetchFramebufferForSize(GLsizei width, GLsizei height, OPFilterTextureOptions options, bool onlyTexture) {
     std::string key = keyWithFrameBuffer(width, height, options, onlyTexture);
     auto it = bufferCache.find(key);
-    if (it == bufferCache.end()) {
-        // 创建
-        std::shared_ptr<OPFilterFrameBufferBox> frameBufferBox = std::make_shared<OPFilterFrameBufferBox>();
-        frameBufferBox->frameBuffer = std::make_shared<OPFilterFrameBuffer>(width, height, options, onlyTexture);
-        frameBufferBox->weakCache = weak_from_this();
-        return frameBufferBox;
-    } else {
+    if (it != bufferCache.end()) {
         // 从cache中取出
-        auto frameBufferBox = it->second;
-        bufferCache.erase(it);
-        return frameBufferBox;
+        auto &frameBufferBoxList = it->second;
+        if (frameBufferBoxList.size() > 0) {
+            auto frameBufferBox = frameBufferBoxList.front();
+            frameBufferBoxList.pop_front();
+            return frameBufferBox;
+        }
     }
+    // 创建
+    std::shared_ptr<OPFilterFrameBufferBox> frameBufferBox = std::make_shared<OPFilterFrameBufferBox>();
+    frameBufferBox->frameBuffer = std::make_shared<OPFilterFrameBuffer>(width, height, options, onlyTexture);
+    frameBufferBox->weakCache = weak_from_this();
+    return frameBufferBox;
 }
 
 void OPFilterFrameBufferCache::storeInCache(std::shared_ptr<OPFilterFrameBuffer> frameBuffer) {
     if (frameBuffer.get() == nullptr) {
         return;
     }
+    
     std::shared_ptr<OPFilterFrameBufferBox> frameBufferBox = std::make_shared<OPFilterFrameBufferBox>();
     frameBufferBox->frameBuffer = frameBuffer;
     frameBufferBox->weakCache = weak_from_this();
 
     std::string key = keyWithFrameBuffer(frameBuffer);
-    bufferCache[key] = frameBufferBox;
+    if (bufferCache.find(key) == bufferCache.end()) {
+        std::list<std::shared_ptr<OPFilterFrameBufferBox>> boxList;
+        boxList.push_back(frameBufferBox);
+        bufferCache[key] = boxList;
+    } else {
+        auto &boxList = bufferCache[key];
+        boxList.push_back(frameBufferBox);
+    }
 }
 
 std::string OPFilterFrameBufferCache::keyWithFrameBuffer(GLsizei width, GLsizei height, OPFilterTextureOptions options, bool onlyTexture) {

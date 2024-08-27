@@ -12,6 +12,7 @@
 #include <memory>
 #include <unordered_map>
 #include <string>
+#include <list>
 #include "OPFilterFrameBuffer.hpp"
 
 class OPFilterFrameBufferCache;
@@ -27,7 +28,7 @@ public:
 
 class OPFilterFrameBufferCache : public std::enable_shared_from_this<OPFilterFrameBufferCache> {
 private:
-    std::unordered_map<std::string, std::shared_ptr<OPFilterFrameBufferBox>> bufferCache;
+    std::unordered_map<std::string, std::list<std::shared_ptr<OPFilterFrameBufferBox>>> bufferCache;
     std::string keyWithFrameBuffer(std::shared_ptr<OPFilterFrameBuffer> frameBuffer);
     std::string keyWithFrameBuffer(GLsizei width, GLsizei height, OPFilterTextureOptions options, bool onlyTexture);
 public:

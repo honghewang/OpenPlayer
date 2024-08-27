@@ -13,7 +13,7 @@
 
 class OPFilterImageInputFilter : public OPFilterInOut {
 protected:
-    void render() override;
+    std::shared_ptr<OPFilterFrameBufferBox> render() override;
 public:
     cv::Mat imageMat;
 };

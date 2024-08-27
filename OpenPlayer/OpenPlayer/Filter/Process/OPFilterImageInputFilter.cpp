@@ -8,15 +8,14 @@
 #include "OPFilterImageInputFilter.hpp"
 
 
-void OPFilterImageInputFilter::render() {
-    std::shared_ptr<OPFilterFrameBufferBox> frameBufferBox;
+std::shared_ptr<OPFilterFrameBufferBox> OPFilterImageInputFilter::render() {
     if (infoCenter.expired()) {
-        return;
+        return nullptr;
     }
     if (imageMat.cols == 0 || imageMat.rows == 0) {
-        return;
+        return nullptr;
     }
-    frameBufferBox = infoCenter.lock()->bufferCache->fetchFramebufferForSize(imageMat.cols, imageMat.rows, true);
+    std::shared_ptr<OPFilterFrameBufferBox> frameBufferBox = infoCenter.lock()->bufferCache->fetchFramebufferForSize(imageMat.cols, imageMat.rows, true);
     
     GLuint texture = frameBufferBox->frameBuffer->texture;
     glActiveTexture(GL_TEXTURE1);
@@ -26,5 +25,5 @@ void OPFilterImageInputFilter::render() {
         mat = imageMat.clone();
     }
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, mat.cols, mat.rows, 0, GL_RGB, GL_UNSIGNED_BYTE, mat.data);
-    outputTexture = texture;
+    return frameBufferBox;
 }

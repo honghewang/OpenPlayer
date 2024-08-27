@@ -45,8 +45,10 @@
     }];
     
     std::shared_ptr<OPFilterRenderFilterLink> maskLink = std::make_shared<OPFilterRenderFilterLink>();
+    std::shared_ptr<OPFilterFacePointsFilter> pointsFilter = std::make_shared<OPFilterFacePointsFilter>();
     std::shared_ptr<OPFilterFaceMaskFilter> maskFilter = std::make_shared<OPFilterFaceMaskFilter>();
-    maskLink->input = maskFilter;
+    pointsFilter->addTarget(maskFilter);
+    maskLink->input = pointsFilter;
     maskLink->output = maskFilter;
     [self.gpuView setFilterLinks:maskLink];
     

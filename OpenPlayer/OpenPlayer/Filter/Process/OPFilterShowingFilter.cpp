@@ -8,9 +8,10 @@
 #include "OPFilterShowingFilter.hpp"
 
 
-void OPFilterShowingFilter::render() {
-    if (refreshFunc == nullptr || inputInfos.size() == 0 || inputInfos.front()->textureId == 0) {
-        return;
+std::shared_ptr<OPFilterFrameBufferBox> OPFilterShowingFilter::render() {
+    if (refreshFunc == nullptr || inputInfos.size() == 0 || inputInfos.front()->frameBufferBox.get() == nullptr) {
+        return nullptr;
     }
-    refreshFunc(inputInfos.front()->textureId);
+    refreshFunc(inputInfos.front()->frameBufferBox->frameBuffer->texture);
+    return nullptr;
 }

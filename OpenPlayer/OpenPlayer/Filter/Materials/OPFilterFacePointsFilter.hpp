@@ -15,9 +15,8 @@ class OPFilterFacePointsFilter : public OPFilterInOut {
 private:
     void renderTexture(std::shared_ptr<OPFilterRenderFilterInfoCenter> info);
     void renderFacePoints(std::shared_ptr<OPFilterRenderFilterInfoCenter> info);
-    std::shared_ptr<OPFilterFrameBufferBox> frameBufferBox;
 protected:
-   void render() override;
+    std::shared_ptr<OPFilterFrameBufferBox> render() override;
    
 };
 

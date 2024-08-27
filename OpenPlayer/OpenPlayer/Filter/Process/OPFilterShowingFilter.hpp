@@ -13,7 +13,7 @@
 
 class OPFilterShowingFilter : public OPFilterInOut {
 protected:
-    void render() override;
+    std::shared_ptr<OPFilterFrameBufferBox> render() override;
 public:
     std::function<void(int texture)> refreshFunc;
 };

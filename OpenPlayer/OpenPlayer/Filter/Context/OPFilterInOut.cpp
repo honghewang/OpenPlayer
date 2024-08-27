@@ -9,12 +9,20 @@
 
 
 void OPFilterInOut::addTarget(std::shared_ptr<OPFilterInOut> output) {
-    targets.push_back(output);
-    auto input = std::make_shared<OPFilterInputTexture>();
     if (output->inputInfos.size() < output->needInputs) {
+        int index = output->inputInfos.size();
+        auto input = std::make_shared<OPFilterInputInfo>();
         input->InputFilter = weak_from_this();
-        input->textureId = 0;
+        input->frameBufferBox.reset();
         output->inputInfos.push_back(input);
+        
+        std::shared_ptr<OPFilterOutputInfo> target = std::make_shared<OPFilterOutputInfo>();
+        target->outputFilter = output;
+        target->index = index;
+        targets.push_back(target);
+        
+    } else {
+        assert("滤镜使用错误，大于了所需输入");
     }
 }
 
@@ -35,40 +43,34 @@ void OPFilterInOut::setInfoCenter(std::weak_ptr<OPFilterRenderFilterInfoCenter> 
 void OPFilterInOut::process() {
     // 所有input都准备好才开始
     for (auto input : inputInfos) {
-        if (input->textureId <= 0) {
+        if (input->frameBufferBox.get() == nullptr || input->frameBufferBox->frameBuffer.get() == nullptr) {
             return;
         }
     }
     // 处理自身
-    render();
+    std::shared_ptr<OPFilterFrameBufferBox> frameBufferBox = render();
     clearInputTextureIds();
-    if (outputTexture != 0) {
+    if (frameBufferBox.get() != nullptr && frameBufferBox->frameBuffer.get() != nullptr) {
         for (auto target : targets) {
-            target->setInfoCenter(infoCenter);
-            target->updateInputTextureIds();
-            target->process();
+            target->outputFilter->setInfoCenter(infoCenter);
+            if (target->index < target->outputFilter->inputInfos.size()) {
+                target->outputFilter->inputInfos[target->index]->frameBufferBox = frameBufferBox;
+
+            }
+            target->outputFilter->process();
         }
     }
-    // 清空自身
-    outputTexture = 0;
 }
 
-void OPFilterInOut::updateInputTextureIds() {
-    for (auto input : inputInfos) {
-        if (!input->InputFilter.expired() && input->InputFilter.lock()->outputTexture > 0) {
-            input->textureId = input->InputFilter.lock()->outputTexture;
-        }
-    }
-}
 
 void OPFilterInOut::clearInputTextureIds() {
     for (auto input : inputInfos) {
-        input->textureId = 0;
+        input->frameBufferBox.reset();
     }
 }
 
-void OPFilterInOut::render() {
+std::shared_ptr<OPFilterFrameBufferBox> OPFilterInOut::render() {
     // 需要override
-    outputTexture = 0;
+    return nullptr;
 }
 
