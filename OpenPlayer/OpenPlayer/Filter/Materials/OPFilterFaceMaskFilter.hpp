@@ -9,11 +9,10 @@
 #define OPFilterFaceMask_hpp
 
 #include <stdio.h>
-#include "OPFilterInOut.hpp"
+#include "OPFilterTextureFilter.hpp"
 
-class OPFilterFaceMaskFilter : public OPFilterInOut {
+class OPFilterFaceMaskFilter : public OPFilterTextureFilter {
 private:
-    void renderTexture(std::shared_ptr<OPFilterRenderFilterInfoCenter> info);
     void renderFaceMask(std::shared_ptr<OPFilterRenderFilterInfoCenter> info);
 protected:
     std::shared_ptr<OPFilterFrameBufferBox> render() override;

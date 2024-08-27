@@ -33,6 +33,7 @@
 		B91BB55E2C7B9AC600A2CE7B /* OPPlayerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B91BB55C2C7B9AC600A2CE7B /* OPPlayerLayer.m */; };
 		B91BB5612C7B9AD100A2CE7B /* shaderf.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B91BB55F2C7B9AD100A2CE7B /* shaderf.glsl */; };
 		B91BB5622C7B9AD100A2CE7B /* shaderv.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B91BB5602C7B9AD100A2CE7B /* shaderv.glsl */; };
+		B91BB5652C7D760800A2CE7B /* OPFilterTextureFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B91BB5632C7D760800A2CE7B /* OPFilterTextureFilter.cpp */; };
 		B920A4F82C6DC217005F4F9C /* OPFilterInOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B920A4F62C6DC217005F4F9C /* OPFilterInOut.cpp */; };
 		B920A5072C6DE7A6005F4F9C /* OPFilterTestVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B920A5062C6DE7A6005F4F9C /* OPFilterTestVC.mm */; };
 		B920A5102C70AC7D005F4F9C /* OPFilterGPUView.mm in Sources */ = {isa = PBXBuildFile; fileRef = B920A50F2C70AC7D005F4F9C /* OPFilterGPUView.mm */; };
@@ -239,6 +240,8 @@
 		B91BB55D2C7B9AC600A2CE7B /* OPPlayerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPPlayerLayer.h; sourceTree = "<group>"; };
 		B91BB55F2C7B9AD100A2CE7B /* shaderf.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shaderf.glsl; sourceTree = "<group>"; };
 		B91BB5602C7B9AD100A2CE7B /* shaderv.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shaderv.glsl; sourceTree = "<group>"; };
+		B91BB5632C7D760800A2CE7B /* OPFilterTextureFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OPFilterTextureFilter.cpp; sourceTree = "<group>"; };
+		B91BB5642C7D760800A2CE7B /* OPFilterTextureFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OPFilterTextureFilter.hpp; sourceTree = "<group>"; };
 		B920A4F62C6DC217005F4F9C /* OPFilterInOut.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OPFilterInOut.cpp; sourceTree = "<group>"; };
 		B920A4F72C6DC217005F4F9C /* OPFilterInOut.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OPFilterInOut.hpp; sourceTree = "<group>"; };
 		B920A5052C6DE7A6005F4F9C /* OPFilterTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPFilterTestVC.h; sourceTree = "<group>"; };
@@ -504,6 +507,8 @@
 				B9071DF02C3E4587007008F1 /* OPFilterFrameBufferCache.hpp */,
 				B920A51D2C74C8D5005F4F9C /* OPFilterShaderHeader.cpp */,
 				B920A51E2C74C8D5005F4F9C /* OPFilterShaderHeader.hpp */,
+				B91BB5632C7D760800A2CE7B /* OPFilterTextureFilter.cpp */,
+				B91BB5642C7D760800A2CE7B /* OPFilterTextureFilter.hpp */,
 			);
 			path = Context;
 			sourceTree = "<group>";
@@ -1193,6 +1198,7 @@
 				B931BADC2C16AA38000AAFAE /* OPFFmpegManager.cpp in Sources */,
 				B920A5182C71BD1B005F4F9C /* OPFilterProcess.cpp in Sources */,
 				B9071DE02C3C13BA007008F1 /* OPCVPredictor.cpp in Sources */,
+				B91BB5652C7D760800A2CE7B /* OPFilterTextureFilter.cpp in Sources */,
 				B920A5102C70AC7D005F4F9C /* OPFilterGPUView.mm in Sources */,
 				B91BB5552C7B94C500A2CE7B /* OPFaceImageFilter.mm in Sources */,
 				B9DA1A0A2C2C16A700BEEF29 /* OPVideoController.cpp in Sources */,

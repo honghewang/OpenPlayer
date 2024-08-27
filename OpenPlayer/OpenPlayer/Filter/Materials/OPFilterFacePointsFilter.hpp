@@ -9,11 +9,10 @@
 #define OPFilterFacePointsFilter_hpp
 
 #include <stdio.h>
-#include "OPFilterInOut.hpp"
+#include "OPFilterTextureFilter.hpp"
 
-class OPFilterFacePointsFilter : public OPFilterInOut {
+class OPFilterFacePointsFilter : public OPFilterTextureFilter {
 private:
-    void renderTexture(std::shared_ptr<OPFilterRenderFilterInfoCenter> info);
     void renderFacePoints(std::shared_ptr<OPFilterRenderFilterInfoCenter> info);
 protected:
     std::shared_ptr<OPFilterFrameBufferBox> render() override;

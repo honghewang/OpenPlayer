@@ -14,7 +14,9 @@
 
 extern std::string OPFilterVertexShaderString;
 extern std::string OPFilterPointVertexShaderString;
+
 extern std::string OPFilterPointFragmentShaderString;
+extern std::string OPFilterGrayFragmentShadeString;
 extern std::string OPFilterPassthroughFragmentShaderString;
 
 extern std::map<std::string, std::string> OPVertexShaderMap;
