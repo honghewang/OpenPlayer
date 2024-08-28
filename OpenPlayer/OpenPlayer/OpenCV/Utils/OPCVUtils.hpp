@@ -40,7 +40,7 @@ public:
     
     std::vector<dlib::full_object_detection> detectorImg(cv::Mat& img);
     // frontal_face_detector 检测人脸，运行速度慢，可能是模拟器原因
-    void detectorImg2(cv::Mat& img);
+    std::vector<dlib::full_object_detection> detectorImg2(cv::Mat& img);
     
     void detectorImgTest(cv::Mat& img, std::vector<float> &vct);
 };

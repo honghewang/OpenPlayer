@@ -10,7 +10,6 @@
 #import "OPDecoderTestVC.h"
 #import "OPPlayerVC.h"
 #import "OPOpenCVTestVC.h"
-#import "OPCameraViewController.h"
 #import "OPFilterGPUImageTest.h"
 #import "OPFilterTestVC.h"
 #include "OPCVUtils.hpp"
@@ -85,20 +84,15 @@
     model4.cls = OPOpenCVTestVC.class;
     
     OPVCModel *model5 = [[OPVCModel alloc] init];
-    model5.title = @"Camera";
-    model5.cls = OPCameraViewController.class;
-    
-    OPVCModel *model6 = [[OPVCModel alloc] init];
-    model6.title = @"滤镜测试：AI同步/异步";
-    model6.cls = OPFilterTestVC.class;
+    model5.title = @"滤镜测试：AI同步/异步";
+    model5.cls = OPFilterTestVC.class;
     
     return @[
         model1,
         model2,
         model3,
         model4,
-        model5,
-        model6
+        model5
     ];
 }
 

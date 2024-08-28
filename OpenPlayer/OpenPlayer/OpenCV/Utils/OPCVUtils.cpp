@@ -89,6 +89,19 @@ std::vector<dlib::full_object_detection> OPCVUtils::detectorImg(cv::Mat& img) {
     return facePoints;
 }
 
+std::vector<dlib::full_object_detection> OPCVUtils::detectorImg2(cv::Mat& img) {
+    dlib::frontal_face_detector faceDetector = dlib::get_frontal_face_detector();
+    dlib::cv_image<dlib::bgr_pixel> dlibFrame(img);
+    std::vector<dlib::rectangle> faces = faceDetector(dlibFrame);
+    std::vector<dlib::full_object_detection> facePoints;
+    for (const auto& faceRect : faces) {
+        dlib::rectangle face(faceRect.left(), faceRect.top(), faceRect.right(), faceRect.bottom());
+        dlib::full_object_detection shape = predictor->share_predictor(dlibFrame, face);
+        facePoints.push_back(shape);
+    }
+    return facePoints;
+}
+
 void OPCVUtils::detectorImgTest(cv::Mat& img, std::vector<float> &vct) {
     cv::Mat des;
     cv::cvtColor(img, des, cv::COLOR_BGR2GRAY);
@@ -110,19 +123,6 @@ void OPCVUtils::detectorImgTest(cv::Mat& img, std::vector<float> &vct) {
             vct.push_back(shape.part(i+1).x());
             vct.push_back(shape.part(i+1).y());
         }
-        for (int i = 0; i < shape.num_parts(); i++) {
-            cv::circle(img, cv::Point(shape.part(i).x(), shape.part(i).y()), 3, cv::Scalar(0, 0, 255));
-        }
-        cv::rectangle(img, cv::Point(face.left(), face.top()), cv::Point(face.right(), face.bottom()), cv::Scalar(255, 0, 0));
-    }
-}
-
-void OPCVUtils::detectorImg2(cv::Mat& img) {
-    dlib::frontal_face_detector faceDetector = dlib::get_frontal_face_detector();
-    dlib::cv_image<dlib::bgr_pixel> dlibFrame(img);
-    std::vector<dlib::rectangle> faces = faceDetector(dlibFrame);
-    for (const auto& face : faces) {
-        dlib::full_object_detection shape = predictor->share_predictor(dlibFrame, face);
         for (int i = 0; i < shape.num_parts(); i++) {
             cv::circle(img, cv::Point(shape.part(i).x(), shape.part(i).y()), 3, cv::Scalar(0, 0, 255));
         }

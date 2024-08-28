@@ -50,10 +50,10 @@
     std::shared_ptr<OPFilterFaceMaskFilter> maskFilter = std::make_shared<OPFilterFaceMaskFilter>();
     std::shared_ptr<OPFilterTextureFilter> grayFilter = std::make_shared<OPFilterTextureFilter>(OPFilterVertexShaderString,OPFilterGrayFragmentShadeString);
     /// 这里可以配置滤镜
-//    pointsFilter->addTarget(grayFilter);
-//    grayFilter->addTarget(maskFilter);
+    pointsFilter->addTarget(grayFilter);
+    grayFilter->addTarget(maskFilter);
     
-    pointsFilter->addTarget(maskFilter);
+//    pointsFilter->addTarget(maskFilter);
     
     maskLink->input = pointsFilter;
     maskLink->output = maskFilter;
