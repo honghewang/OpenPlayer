@@ -1,11 +1,13 @@
 //
-//  OPFilterGPUView.m
+//  OPCapturePreview.m
 //  OpenPlayer
 //
-//  Created by 王宏鹤 on 2024/8/17.
+//  Created by 王宏鹤 on 2024/9/14.
 //
 
-#import "OPFilterGPUView.h"
+#import "OPCapturePreview.h"
+#import <CoreFoundation/CoreFoundation.h>
+#include <CoreVideo/CoreVideo.h>
 #include <iostream>
 #import <OpenGLES/ES2/gl.h>
 #import <UIKit/UIKit.h>
@@ -20,7 +22,7 @@ static void prepareContext(std::string identity);
 NSString *const OPFilterContextNotification = @"OPFilterContextNotification";
 NSString *const OPFilterRefreshNotification = @"OPFilterRefreshNotification";
 
-@interface OPFilterGPUView () {
+@interface OPCapturePreview () {
     std::shared_ptr<OPFilterProcess> process;
     std::shared_ptr<OPFilterProgramManager> progamManager;
     
@@ -36,12 +38,11 @@ NSString *const OPFilterRefreshNotification = @"OPFilterRefreshNotification";
 @property (nonatomic, strong) NSString *identity;
 @property (nonatomic, assign) CGRect preFrame;
 
-//@property(nonatomic,assign) GLuint myPrograme;
 @property(nonatomic,weak) CAEAGLLayer *gpuLayer;
 
 @end
 
-@implementation OPFilterGPUView
+@implementation OPCapturePreview
 
 - (instancetype)initWithAsyn:(BOOL)isAsyn {
     if (self = [super init]) {
@@ -66,8 +67,40 @@ NSString *const OPFilterRefreshNotification = @"OPFilterRefreshNotification";
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(handleRefreshNotification:) name:OPFilterRefreshNotification object:nil];
 }
 
-- (void)loadImgMat:(cv::Mat)mat {
-    process->process(mat);
+- (void)loadImgBuffer:(CVImageBufferRef)imgBuffer {
+    size_t planeCount = CVPixelBufferGetPlaneCount(imgBuffer);
+    OSType pixelFormat = CVPixelBufferGetPixelFormatType(imgBuffer);
+    if (pixelFormat == kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange ||
+        pixelFormat == kCVPixelFormatType_420YpCbCr8BiPlanarFullRange) {
+        CFTypeRef colorAttachments = CVBufferGetAttachment(imgBuffer, kCVImageBufferYCbCrMatrixKey, NULL);
+        CFStringRef colorAttachmentString = (CFStringRef)colorAttachments;
+        if (planeCount == 2) {
+            CFComparisonResult result = CFStringCompare(colorAttachmentString, kCVImageBufferYCbCrMatrix_ITU_R_601_4, 0);
+            if (result == kCFCompareEqualTo) {
+                CVPixelBufferLockBaseAddress(imgBuffer, kCVPixelBufferLock_ReadOnly);
+                size_t planeIndexY = 0;
+                void *planeBaseAddressY = CVPixelBufferGetBaseAddressOfPlane(imgBuffer, planeIndexY);
+                int heightY = (int)CVPixelBufferGetHeightOfPlane(imgBuffer, planeIndexY);
+//                int widthY = (int)CVPixelBufferGetWidthOfPlane(imgBuffer, planeIndexY);
+                int perRowY = (int)CVPixelBufferGetBytesPerRowOfPlane(imgBuffer, planeIndexY);
+                cv::Mat matY = cv::Mat(perRowY, heightY, CV_8UC1, planeBaseAddressY).clone();
+                
+                size_t planeIndexUV = 1;
+                void *planeBaseAddressUV = CVPixelBufferGetBaseAddressOfPlane(imgBuffer, planeIndexUV);
+                int heightUV = (int)CVPixelBufferGetHeightOfPlane(imgBuffer, planeIndexUV);
+//                int widthUV = (int)CVPixelBufferGetWidthOfPlane(imgBuffer, planeIndexUV);
+                int perRowUV = (int)CVPixelBufferGetBytesPerRowOfPlane(imgBuffer, planeIndexUV);
+                cv::Mat matUV = cv::Mat(perRowUV, heightUV, CV_8UC2, planeBaseAddressUV).clone();
+                CVPixelBufferUnlockBaseAddress(imgBuffer, kCVPixelBufferLock_ReadOnly);
+                
+            } else {
+//                _preferredConversion = kColorConversion709;
+                
+            }
+        }
+    } else {
+        // TODO
+    }
 }
 
 - (void)setFilterLinks:(std::shared_ptr<OPFilterRenderFilterLink>)link {

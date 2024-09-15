@@ -13,6 +13,7 @@ std::string OPFilterPointVertexShaderString = "OPFilterPointVertexShaderString";
 std::string OPFilterPointFragmentShaderString = "OPFilterPointFragmentShaderString";
 std::string OPFilterGrayFragmentShadeString = "OPFilterGrayFragmentShadeString";
 std::string OPFilterPassthroughFragmentShaderString = "OPFilterPassthroughFragmentShaderString";
+std::string OPFilterYUVFragmentShaderString = "OPFilterYUVFragmentShaderString";
 
 std::map<std::string, std::string> OPVertexShaderMap = {
     {   OPFilterVertexShaderString,
@@ -68,6 +69,23 @@ std::map<std::string, std::string> OPFragmentShaderMap = {
            lowp vec4 textureColor = texture2D(inputImageTexture, textureCoordinate);
            float luminance = dot(textureColor.rgb, W);
            gl_FragColor = vec4(vec3(luminance), textureColor.a);
+       }
+       )"
+    },{OPFilterYUVFragmentShaderString,
+       R"(
+       precision highp float;
+       varying vec2 textureCoordinate;
+       uniform sampler2D SamplerY;
+       uniform sampler2D SamplerUV;
+       uniform mat3 colorConversionMatrix;
+       
+       void main() {
+         mediump vec3 yuv;"
+         lowp vec3 rgb;"
+         yuv.x = (texture2D(SamplerY, texCoordVarying).r - (16.0/255.0));"
+         yuv.yz = (texture2D(SamplerUV, texCoordVarying).rg - vec2(0.5, 0.5));"
+         rgb = colorConversionMatrix * yuv;"
+         gl_FragColor = vec4(rgb, 1);"
        }
        )"
     },

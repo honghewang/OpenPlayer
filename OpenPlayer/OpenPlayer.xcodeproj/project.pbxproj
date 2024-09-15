@@ -32,6 +32,7 @@
 		B91BB5612C7B9AD100A2CE7B /* shaderf.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B91BB55F2C7B9AD100A2CE7B /* shaderf.glsl */; };
 		B91BB5622C7B9AD100A2CE7B /* shaderv.glsl in Resources */ = {isa = PBXBuildFile; fileRef = B91BB5602C7B9AD100A2CE7B /* shaderv.glsl */; };
 		B91BB5652C7D760800A2CE7B /* OPFilterTextureFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B91BB5632C7D760800A2CE7B /* OPFilterTextureFilter.cpp */; };
+		B91BB5692C8011B600A2CE7B /* OPCameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B91BB5682C8011B600A2CE7B /* OPCameraViewController.mm */; };
 		B920A4F82C6DC217005F4F9C /* OPFilterInOut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B920A4F62C6DC217005F4F9C /* OPFilterInOut.cpp */; };
 		B920A5072C6DE7A6005F4F9C /* OPFilterTestVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B920A5062C6DE7A6005F4F9C /* OPFilterTestVC.mm */; };
 		B920A5102C70AC7D005F4F9C /* OPFilterGPUView.mm in Sources */ = {isa = PBXBuildFile; fileRef = B920A50F2C70AC7D005F4F9C /* OPFilterGPUView.mm */; };
@@ -76,6 +77,9 @@
 		B9989DB92C4A1BCE00B174C5 /* haarcascade_frontalface_alt2.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9989DB82C4A1BCE00B174C5 /* haarcascade_frontalface_alt2.xml */; };
 		B9DA1A072C2BDB8F00BEEF29 /* OPPtrManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9DA1A052C2BDB8F00BEEF29 /* OPPtrManager.cpp */; };
 		B9DA1A0A2C2C16A700BEEF29 /* OPVideoController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9DA1A082C2C16A700BEEF29 /* OPVideoController.cpp */; };
+		B9E311EF2C81BEFC0031A5B7 /* OPCaptureSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E311EE2C81BEFC0031A5B7 /* OPCaptureSystem.m */; };
+		B9F0018E2C949A7A009BF7CA /* OPCapturePreview.mm in Sources */ = {isa = PBXBuildFile; fileRef = B9F0018D2C949A7A009BF7CA /* OPCapturePreview.mm */; };
+		B9F001912C96EAA4009BF7CA /* OPFilterInputMat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9F0018F2C96EAA4009BF7CA /* OPFilterInputMat.cpp */; };
 		B9FFC9CF2BEB388E005EF81E /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B950FDE02BE9ED47000C45D0 /* test.mp4 */; };
 		B9FFC9D12BEB8D32005EF81E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B9FFC9D02BEB8D32005EF81E /* libz.tbd */; };
 		B9FFC9D32BEB8D5E005EF81E /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B9FFC9D22BEB8D5E005EF81E /* libiconv.tbd */; };
@@ -235,6 +239,8 @@
 		B91BB5602C7B9AD100A2CE7B /* shaderv.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shaderv.glsl; sourceTree = "<group>"; };
 		B91BB5632C7D760800A2CE7B /* OPFilterTextureFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OPFilterTextureFilter.cpp; sourceTree = "<group>"; };
 		B91BB5642C7D760800A2CE7B /* OPFilterTextureFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OPFilterTextureFilter.hpp; sourceTree = "<group>"; };
+		B91BB5672C8011B600A2CE7B /* OPCameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPCameraViewController.h; sourceTree = "<group>"; };
+		B91BB5682C8011B600A2CE7B /* OPCameraViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OPCameraViewController.mm; sourceTree = "<group>"; };
 		B920A4F62C6DC217005F4F9C /* OPFilterInOut.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OPFilterInOut.cpp; sourceTree = "<group>"; };
 		B920A4F72C6DC217005F4F9C /* OPFilterInOut.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OPFilterInOut.hpp; sourceTree = "<group>"; };
 		B920A5052C6DE7A6005F4F9C /* OPFilterTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPFilterTestVC.h; sourceTree = "<group>"; };
@@ -394,6 +400,12 @@
 		B9DA1A062C2BDB8F00BEEF29 /* OPPtrManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OPPtrManager.hpp; sourceTree = "<group>"; };
 		B9DA1A082C2C16A700BEEF29 /* OPVideoController.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OPVideoController.cpp; sourceTree = "<group>"; };
 		B9DA1A092C2C16A700BEEF29 /* OPVideoController.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OPVideoController.hpp; sourceTree = "<group>"; };
+		B9E311ED2C81BEFC0031A5B7 /* OPCaptureSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPCaptureSystem.h; sourceTree = "<group>"; };
+		B9E311EE2C81BEFC0031A5B7 /* OPCaptureSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPCaptureSystem.m; sourceTree = "<group>"; };
+		B9F0018C2C949A7A009BF7CA /* OPCapturePreview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPCapturePreview.h; sourceTree = "<group>"; };
+		B9F0018D2C949A7A009BF7CA /* OPCapturePreview.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OPCapturePreview.mm; sourceTree = "<group>"; };
+		B9F0018F2C96EAA4009BF7CA /* OPFilterInputMat.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OPFilterInputMat.cpp; sourceTree = "<group>"; };
+		B9F001902C96EAA4009BF7CA /* OPFilterInputMat.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OPFilterInputMat.hpp; sourceTree = "<group>"; };
 		B9FFC9D02BEB8D32005EF81E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		B9FFC9D22BEB8D5E005EF81E /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		B9FFC9D42BEBDC84005EF81E /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
@@ -689,6 +701,19 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		B91BB5662C80116200A2CE7B /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				B91BB5672C8011B600A2CE7B /* OPCameraViewController.h */,
+				B91BB5682C8011B600A2CE7B /* OPCameraViewController.mm */,
+				B9E311ED2C81BEFC0031A5B7 /* OPCaptureSystem.h */,
+				B9E311EE2C81BEFC0031A5B7 /* OPCaptureSystem.m */,
+				B9F0018C2C949A7A009BF7CA /* OPCapturePreview.h */,
+				B9F0018D2C949A7A009BF7CA /* OPCapturePreview.mm */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
 		B920A5152C71BCE5005F4F9C /* Process */ = {
 			isa = PBXGroup;
 			children = (
@@ -702,6 +727,8 @@
 				B948808B2C7ADE9300C86CB5 /* OPFilterImageInputFilter.hpp */,
 				B948808D2C7ADEDE00C86CB5 /* OPFilterShowingFilter.cpp */,
 				B948808E2C7ADEDE00C86CB5 /* OPFilterShowingFilter.hpp */,
+				B9F0018F2C96EAA4009BF7CA /* OPFilterInputMat.cpp */,
+				B9F001902C96EAA4009BF7CA /* OPFilterInputMat.hpp */,
 			);
 			path = Process;
 			sourceTree = "<group>";
@@ -898,6 +925,7 @@
 		B950FDBB2BE9DB81000C45D0 /* OpenPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				B91BB5662C80116200A2CE7B /* Camera */,
 				B920A5192C71DAFC005F4F9C /* Frameworks */,
 				B9E0A8DB2C625C9200DB2377 /* Filter */,
 				B9071DF92C401217007008F1 /* GPUImgTest */,
@@ -1131,10 +1159,13 @@
 				B920A5142C71A851005F4F9C /* OPFilterAICenter.cpp in Sources */,
 				B948808F2C7ADEDE00C86CB5 /* OPFilterShowingFilter.cpp in Sources */,
 				B9071DEB2C3E44AA007008F1 /* OPFilterProgramManager.cpp in Sources */,
+				B9F001912C96EAA4009BF7CA /* OPFilterInputMat.cpp in Sources */,
 				B931BAD92C1576C4000AAFAE /* OPPlayer.cpp in Sources */,
 				B9071DF12C3E4587007008F1 /* OPFilterFrameBufferCache.cpp in Sources */,
+				B9E311EF2C81BEFC0031A5B7 /* OPCaptureSystem.m in Sources */,
 				B931BAE52C1CB052000AAFAE /* OPPacketQueue.cpp in Sources */,
 				B931BA0D2C0FEC19000AAFAE /* OPPlayerVC.m in Sources */,
+				B91BB5692C8011B600A2CE7B /* OPCameraViewController.mm in Sources */,
 				B9071DD92C3BE7C0007008F1 /* OPCVUtils.cpp in Sources */,
 				B931BAEB2C259E13000AAFAE /* OPAudioController.cpp in Sources */,
 				B9071DEE2C3E4573007008F1 /* OPFilterFrameBuffer.cpp in Sources */,
@@ -1159,6 +1190,7 @@
 				B931BADF2C16D49D000AAFAE /* OPStreamOperation.cpp in Sources */,
 				B948808C2C7ADE9300C86CB5 /* OPFilterImageInputFilter.cpp in Sources */,
 				B950FDD82BE9E605000C45D0 /* TableViewCell.m in Sources */,
+				B9F0018E2C949A7A009BF7CA /* OPCapturePreview.mm in Sources */,
 				B920A5072C6DE7A6005F4F9C /* OPFilterTestVC.mm in Sources */,
 				B931BA052BFB19FD000AAFAE /* OPAudioToolBoxPlayer.m in Sources */,
 				B931BA6B2C10CF52000AAFAE /* OPPlayerView.mm in Sources */,

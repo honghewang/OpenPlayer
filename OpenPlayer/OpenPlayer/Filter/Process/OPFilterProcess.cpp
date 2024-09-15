@@ -35,6 +35,7 @@ void OPFilterProcess::process(cv::Mat& img) {
     AICondition.notify_one();
 }
 
+
 void OPFilterProcess::startAIProcess() {
     cv::Mat tmpMat = getImageMat();
     if (tmpMat.rows != 0) {

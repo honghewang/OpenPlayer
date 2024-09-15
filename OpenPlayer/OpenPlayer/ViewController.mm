@@ -13,6 +13,7 @@
 #import "OPFilterGPUImageTest.h"
 #import "OPFilterTestVC.h"
 #include "OPCVUtils.hpp"
+#import "OPCameraViewController.h"
 
 @interface OPVCModel : NSObject
 
@@ -87,12 +88,17 @@
     model5.title = @"滤镜测试：AI同步/异步";
     model5.cls = OPFilterTestVC.class;
     
+    OPVCModel *model6 = [[OPVCModel alloc] init];
+    model6.title = @"相机";
+    model6.cls = OPCameraViewController.class;
+    
     return @[
         model1,
         model2,
         model3,
         model4,
-        model5
+        model5,
+        model6
     ];
 }
 

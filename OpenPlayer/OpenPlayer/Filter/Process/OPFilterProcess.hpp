@@ -30,8 +30,7 @@ public:
     ~OPFilterProcess() {};
     
     // 开始处理
-    void process(cv::Mat& img);
-    
+    void process(cv::Mat& img);    
     void stop();
     
     void startAIProcess();
