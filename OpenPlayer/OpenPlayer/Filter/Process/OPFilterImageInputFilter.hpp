@@ -10,12 +10,15 @@
 
 #include <stdio.h>
 #include "OPFilterInOut.hpp"
+#include "OPFilterInputMat.hpp"
 
 class OPFilterImageInputFilter : public OPFilterInOut {
+    std::shared_ptr<OPFilterFrameBufferBox> renderYUV();
+    std::shared_ptr<OPFilterFrameBufferBox> renderRGB();
 protected:
     std::shared_ptr<OPFilterFrameBufferBox> render() override;
 public:
-    cv::Mat imageMat;
+    std::shared_ptr<OPFilterInputMat> inputMat;
 };
 
 #endif /* OPFilterImageInputFilter_hpp */

@@ -15,6 +15,7 @@
 #include <condition_variable>
 #include "OPFilterAICenter.hpp"
 #include "OPFilterRenderContext.hpp"
+#include "OPFilterInputMat.hpp"
 #include <opencv2/core.hpp>
 #include <memory>
 
@@ -30,16 +31,17 @@ public:
     ~OPFilterProcess() {};
     
     // 开始处理
-    void process(cv::Mat& img);    
+    void process(std::shared_ptr<OPFilterInputMat> input);    
     void stop();
     
     void startAIProcess();
     
     void startRenderProcess();
     
-    void setImageMat(cv::Mat mat);
+    void setMatInput(std::shared_ptr<OPFilterInputMat> input);
+    void clearMatInput();
     
-    cv::Mat getImageMat();
+    std::shared_ptr<OPFilterInputMat> getMatInput();
     
     void setFilterLinks(std::shared_ptr<OPFilterRenderFilterLink> link);
     
@@ -48,7 +50,7 @@ public:
     void setRefreshFunc(std::function<void(int texture)> refreshFunc);
     
 private:
-    cv::Mat imageMat;
+    std::shared_ptr<OPFilterInputMat> inputMat;
     std::mutex processMutex;
     
     std::mutex AIMutex;

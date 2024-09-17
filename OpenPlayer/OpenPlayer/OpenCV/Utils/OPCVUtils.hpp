@@ -35,10 +35,13 @@ public:
     static cv::Mat imgWithFile(std::string file);
     static cv::Mat imgRGBWithFile(std::string file);
     static cv::Mat imgRGBWithMat(cv::Mat& mat);
+    static cv::Mat imgBGRWithYUVMat(cv::Mat& yuv);
+    static cv::Mat imgGrayWithYUVMat(cv::Mat& yuv);
     
     void loadModel(std::string facepoint, std::string faceModel);
     
     std::vector<dlib::full_object_detection> detectorImg(cv::Mat& img);
+    std::vector<dlib::full_object_detection> detectorGrayImg(cv::Mat& img);
     // frontal_face_detector 检测人脸，运行速度慢，可能是模拟器原因
     std::vector<dlib::full_object_detection> detectorImg2(cv::Mat& img);
     

@@ -257,17 +257,18 @@
 
 /**设置分辨率**/
 - (void)setVideoPreset {
-    if ([self.captureSession canSetSessionPreset:AVCaptureSessionPreset1920x1080])  {
-        self.captureSession.sessionPreset = AVCaptureSessionPreset1920x1080;
-        _witdh = 1080; _height = 1920;
-    }else if ([self.captureSession canSetSessionPreset:AVCaptureSessionPreset1280x720]) {
-        self.captureSession.sessionPreset = AVCaptureSessionPreset1280x720;
-        _witdh = 720; _height = 1280;
-    }else{
-        self.captureSession.sessionPreset = AVCaptureSessionPreset640x480;
-        _witdh = 480; _height = 640;
-    }
-    
+//    if ([self.captureSession canSetSessionPreset:AVCaptureSessionPreset1920x1080])  {
+//        self.captureSession.sessionPreset = AVCaptureSessionPreset1920x1080;
+//        _witdh = 1080; _height = 1920;
+//    } else if ([self.captureSession canSetSessionPreset:AVCaptureSessionPreset1280x720]) {
+//        self.captureSession.sessionPreset = AVCaptureSessionPreset1280x720;
+//        _witdh = 720; _height = 1280;
+//    } else {
+//        self.captureSession.sessionPreset = AVCaptureSessionPreset640x480;
+//        _witdh = 480; _height = 640;
+//    }
+    self.captureSession.sessionPreset = AVCaptureSessionPreset640x480;
+    _witdh = 480; _height = 640;
 }
 
 - (void)updateFps:(NSInteger)fps{

@@ -15,10 +15,10 @@ void OPFilterRenderContext::render(std::shared_ptr<OPFilterAIModel> faceInfo) {
     }
     contextFunc();
     infoCenter->aiInfo = faceInfo->aiInfo;
-    infoCenter->width = faceInfo->imageMat.cols;
-    infoCenter->height = faceInfo->imageMat.rows;
+    infoCenter->width = faceInfo->inputMat->imageMat.cols;
+    infoCenter->height = faceInfo->inputMat->imageMat.rows;
     inputFilter->setInfoCenter(infoCenter);
-    inputFilter->imageMat = faceInfo->imageMat;
+    inputFilter->inputMat = faceInfo->inputMat;
     inputFilter->process();
 }
 

@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithAsyn:(BOOL)isAsyn;
 
 - (void)loadImgBuffer:(CVImageBufferRef)imgBuffer;
+- (void)loadImgBuffer2:(CVImageBufferRef)imgBuffer;
 
 - (void)setFilterLinks:(std::shared_ptr<OPFilterRenderFilterLink>)link;
 

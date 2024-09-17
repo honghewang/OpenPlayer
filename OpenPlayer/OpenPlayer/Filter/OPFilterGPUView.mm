@@ -67,7 +67,7 @@ NSString *const OPFilterRefreshNotification = @"OPFilterRefreshNotification";
 }
 
 - (void)loadImgMat:(cv::Mat)mat {
-    process->process(mat);
+    process->process(std::make_shared<OPFilterInputMat>(mat));
 }
 
 - (void)setFilterLinks:(std::shared_ptr<OPFilterRenderFilterLink>)link {

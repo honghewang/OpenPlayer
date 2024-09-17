@@ -13,6 +13,7 @@
 #import <UIKit/UIKit.h>
 #include <OpenGLES/ES2/glext.h>
 #include "OPFilterProgramManager.hpp"
+#include "OPCVUtils.hpp"
 
 
 static void refresh(std::string identity, int texture);
@@ -68,6 +69,7 @@ NSString *const OPFilterRefreshNotification = @"OPFilterRefreshNotification";
 }
 
 - (void)loadImgBuffer:(CVImageBufferRef)imgBuffer {
+    
     size_t planeCount = CVPixelBufferGetPlaneCount(imgBuffer);
     OSType pixelFormat = CVPixelBufferGetPixelFormatType(imgBuffer);
     if (pixelFormat == kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange ||
@@ -76,31 +78,40 @@ NSString *const OPFilterRefreshNotification = @"OPFilterRefreshNotification";
         CFStringRef colorAttachmentString = (CFStringRef)colorAttachments;
         if (planeCount == 2) {
             CFComparisonResult result = CFStringCompare(colorAttachmentString, kCVImageBufferYCbCrMatrix_ITU_R_601_4, 0);
-            if (result == kCFCompareEqualTo) {
-                CVPixelBufferLockBaseAddress(imgBuffer, kCVPixelBufferLock_ReadOnly);
-                size_t planeIndexY = 0;
-                void *planeBaseAddressY = CVPixelBufferGetBaseAddressOfPlane(imgBuffer, planeIndexY);
-                int heightY = (int)CVPixelBufferGetHeightOfPlane(imgBuffer, planeIndexY);
-//                int widthY = (int)CVPixelBufferGetWidthOfPlane(imgBuffer, planeIndexY);
-                int perRowY = (int)CVPixelBufferGetBytesPerRowOfPlane(imgBuffer, planeIndexY);
-                cv::Mat matY = cv::Mat(perRowY, heightY, CV_8UC1, planeBaseAddressY).clone();
-                
-                size_t planeIndexUV = 1;
-                void *planeBaseAddressUV = CVPixelBufferGetBaseAddressOfPlane(imgBuffer, planeIndexUV);
-                int heightUV = (int)CVPixelBufferGetHeightOfPlane(imgBuffer, planeIndexUV);
-//                int widthUV = (int)CVPixelBufferGetWidthOfPlane(imgBuffer, planeIndexUV);
-                int perRowUV = (int)CVPixelBufferGetBytesPerRowOfPlane(imgBuffer, planeIndexUV);
-                cv::Mat matUV = cv::Mat(perRowUV, heightUV, CV_8UC2, planeBaseAddressUV).clone();
-                CVPixelBufferUnlockBaseAddress(imgBuffer, kCVPixelBufferLock_ReadOnly);
-                
-            } else {
-//                _preferredConversion = kColorConversion709;
-                
-            }
+            bool isHigh = result != kCFCompareEqualTo;
+            CVPixelBufferLockBaseAddress(imgBuffer, kCVPixelBufferLock_ReadOnly);
+
+            size_t planeIndexY = 0;
+            uint8_t *planeBaseAddressY = (uint8_t *)CVPixelBufferGetBaseAddressOfPlane(imgBuffer, planeIndexY);
+            int heightY = (int)CVPixelBufferGetHeightOfPlane(imgBuffer, planeIndexY);
+            int widthY = (int)CVPixelBufferGetWidthOfPlane(imgBuffer, planeIndexY);
+            int perRowY = (int)CVPixelBufferGetBytesPerRowOfPlane(imgBuffer, planeIndexY);
+            cv::Mat matY = cv::Mat(heightY, widthY, CV_8UC1, planeBaseAddressY, perRowY).clone();
+
+            size_t planeIndexUV = 1;
+            uint8_t *planeBaseAddressUV = (uint8_t *)CVPixelBufferGetBaseAddressOfPlane(imgBuffer, planeIndexUV);
+            int heightUV = (int)CVPixelBufferGetHeightOfPlane(imgBuffer, planeIndexUV);
+            int widthUV = (int)CVPixelBufferGetWidthOfPlane(imgBuffer, planeIndexUV);
+            int perRowUV = (int)CVPixelBufferGetBytesPerRowOfPlane(imgBuffer, planeIndexUV);
+            cv::Mat matUV = cv::Mat(heightUV, widthUV, CV_8UC2, planeBaseAddressUV, perRowUV).clone();
+            CVPixelBufferUnlockBaseAddress(imgBuffer, kCVPixelBufferLock_ReadOnly);
+            process->process(std::make_shared<OPFilterInputMat>(matY, matUV, isHigh));
         }
     } else {
         // TODO
     }
+}
+
+- (void)loadImgBuffer2:(CVImageBufferRef)imgBuffer {
+    CVPixelBufferLockBaseAddress(imgBuffer, 0);
+    uint8_t *yuv = (uint8_t *)CVPixelBufferGetBaseAddressOfPlane(imgBuffer, 0);
+    int wid = (int)CVPixelBufferGetWidth(imgBuffer);
+    int hei = (int)CVPixelBufferGetHeight(imgBuffer);
+    int row = (int)CVPixelBufferGetBytesPerRowOfPlane(imgBuffer, 0);
+    cv::Mat img = cv::Mat(hei*1.5, wid, CV_8UC1, yuv, row);
+    cv::Mat img2 = OPCVUtils::imgBGRWithYUVMat(img);
+    CVPixelBufferUnlockBaseAddress(imgBuffer,0);
+    process->process(std::make_shared<OPFilterInputMat>(img2));
 }
 
 - (void)setFilterLinks:(std::shared_ptr<OPFilterRenderFilterLink>)link {

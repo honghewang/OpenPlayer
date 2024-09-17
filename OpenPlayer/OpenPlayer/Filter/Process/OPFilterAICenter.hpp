@@ -11,12 +11,14 @@
 #include <stdio.h>
 #include "OPCVUtils.hpp"
 #include "OPFilterAIInfo.hpp"
+#include "OPFilterInputMat.hpp"
+
 
 struct OPFilterAIModel {
-    cv::Mat imageMat;
+    std::shared_ptr<OPFilterInputMat> inputMat;
     std::shared_ptr<OPFilterAIInfo> aiInfo;
     // 此处会直接move facepoints
-    OPFilterAIModel(cv::Mat mat, std::shared_ptr<OPFilterAIInfo> ai): imageMat(mat), aiInfo(ai) {
+    OPFilterAIModel(std::shared_ptr<OPFilterInputMat> input, std::shared_ptr<OPFilterAIInfo> ai): inputMat(input), aiInfo(ai) {
     }
     
     ~OPFilterAIModel() {
@@ -37,7 +39,7 @@ public:
     OPFilterAICenter(bool async) : asyncRender(async) {}
     ~OPFilterAICenter() {}
     
-    void detectorImg(cv::Mat& img);
+    void detectorImg(std::shared_ptr<OPFilterInputMat> inputMat);
     
     std::shared_ptr<OPFilterAIModel> getAIInfo(bool isPop);
 };

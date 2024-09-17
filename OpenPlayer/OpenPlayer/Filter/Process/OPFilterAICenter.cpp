@@ -8,15 +8,22 @@
 #include "OPFilterAICenter.hpp"
 
 
-void OPFilterAICenter::detectorImg(cv::Mat& img) {
-    std::vector<dlib::full_object_detection> facePoints = OPCVUtils::getInstance()->detectorImg(img);
+void OPFilterAICenter::detectorImg(std::shared_ptr<OPFilterInputMat> inputMat) {
+    if (inputMat.get() == nullptr) {
+        return;
+    }
+    std::vector<dlib::full_object_detection> facePoints;
+    if (inputMat->type == OPFilterInputMatType_BGR) {
+        facePoints = OPCVUtils::getInstance()->detectorImg(inputMat->imageMat);
+    } else {
+        facePoints = OPCVUtils::getInstance()->detectorGrayImg(inputMat->imageMat);
+    }
     {
         std::lock_guard<std::mutex> locker(mutex);
         preAIInfo = curAIInfo;
-        cv::Mat imgClone = OPCVUtils::imgRGBWithMat(img);
         std::shared_ptr<OPFilterAIInfo> aiInfo = std::make_shared<OPFilterAIInfo>();
         aiInfo->facePoints = std::move(facePoints);
-        curAIInfo = std::make_shared<OPFilterAIModel>(imgClone, aiInfo);
+        curAIInfo = std::make_shared<OPFilterAIModel>(inputMat, aiInfo);
     }
 }
 

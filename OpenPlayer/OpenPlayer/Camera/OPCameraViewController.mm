@@ -22,6 +22,8 @@
 
 @property (nonatomic, strong) UIButton *startBtn;
 
+@property (nonatomic, strong) dispatch_queue_t refreshQueue;
+
 @end
 
 @implementation OPCameraViewController
@@ -46,15 +48,13 @@
     self.playerView = [[OPCapturePreview alloc] initWithAsyn:YES];
     self.playerView.frame = CGRectMake(0, 0, size.width, size.height);
     self.playerView.backgroundColor = [UIColor blackColor];
-    std::shared_ptr<OPFilterRenderFilterLink> pointLink = std::make_shared<OPFilterRenderFilterLink>();
-    std::shared_ptr<OPFilterFacePointsFilter> facePointsFilter = std::make_shared<OPFilterFacePointsFilter>();
-    pointLink->input = facePointsFilter;
-    pointLink->output = facePointsFilter;
-    [self.playerView setFilterLinks:pointLink];
+//    std::shared_ptr<OPFilterRenderFilterLink> pointLink = std::make_shared<OPFilterRenderFilterLink>();
+//    std::shared_ptr<OPFilterFacePointsFilter> facePointsFilter = std::make_shared<OPFilterFacePointsFilter>();
+//    pointLink->input = facePointsFilter;
+//    pointLink->output = facePointsFilter;
+//    [self.playerView setFilterLinks:pointLink];
     [self.view addSubview:self.playerView];
     
-    self.captureSystem.preview.frame = CGRectMake(size.width * 2 / 3, 0, size.width / 3, size.height / 3);
-    [self.view addSubview:self.captureSystem.preview];
     
     UIButton *startBtn = [[UIButton alloc] init];
     [startBtn setBackgroundColor:UIColor.grayColor];
@@ -99,9 +99,21 @@
 
     } else {
         // 视频处理
-        CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-        [self.playerView loadImgBuffer:imageBuffer];
+        CFRetain(sampleBuffer);
+        dispatch_async(self.refreshQueue, ^{
+            CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+            [self.playerView loadImgBuffer2:imageBuffer];
+            CFRelease(sampleBuffer);
+        });
+
     }
+}
+
+- (dispatch_queue_t)refreshQueue {
+    if (!_refreshQueue) {
+        _refreshQueue = dispatch_queue_create("refresh Queue", NULL);
+    }
+    return _refreshQueue;
 }
 
 
