@@ -80,6 +80,7 @@
 		B9E311EF2C81BEFC0031A5B7 /* OPCaptureSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E311EE2C81BEFC0031A5B7 /* OPCaptureSystem.m */; };
 		B9F0018E2C949A7A009BF7CA /* OPCapturePreview.mm in Sources */ = {isa = PBXBuildFile; fileRef = B9F0018D2C949A7A009BF7CA /* OPCapturePreview.mm */; };
 		B9F001912C96EAA4009BF7CA /* OPFilterInputMat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9F0018F2C96EAA4009BF7CA /* OPFilterInputMat.cpp */; };
+		B9F001992C9BD2DF009BF7CA /* mmod_human_face_detector.dat in Resources */ = {isa = PBXBuildFile; fileRef = B9F001982C9B36E6009BF7CA /* mmod_human_face_detector.dat */; };
 		B9FFC9CF2BEB388E005EF81E /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B950FDE02BE9ED47000C45D0 /* test.mp4 */; };
 		B9FFC9D12BEB8D32005EF81E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B9FFC9D02BEB8D32005EF81E /* libz.tbd */; };
 		B9FFC9D32BEB8D5E005EF81E /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B9FFC9D22BEB8D5E005EF81E /* libiconv.tbd */; };
@@ -406,6 +407,7 @@
 		B9F0018D2C949A7A009BF7CA /* OPCapturePreview.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OPCapturePreview.mm; sourceTree = "<group>"; };
 		B9F0018F2C96EAA4009BF7CA /* OPFilterInputMat.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OPFilterInputMat.cpp; sourceTree = "<group>"; };
 		B9F001902C96EAA4009BF7CA /* OPFilterInputMat.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OPFilterInputMat.hpp; sourceTree = "<group>"; };
+		B9F001982C9B36E6009BF7CA /* mmod_human_face_detector.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = mmod_human_face_detector.dat; sourceTree = "<group>"; };
 		B9FFC9D02BEB8D32005EF81E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		B9FFC9D22BEB8D5E005EF81E /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		B9FFC9D42BEBDC84005EF81E /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
@@ -740,6 +742,7 @@
 				B9989DB62C4A1B8100B174C5 /* haarcascade_frontalface_alt.xml */,
 				B9929AD42C43AB2F0004CF03 /* haarcascade_frontalface_default.xml */,
 				B9071DDA2C3BFB77007008F1 /* shape_predictor_68_face_landmarks.dat */,
+				B9F001982C9B36E6009BF7CA /* mmod_human_face_detector.dat */,
 				B9071DD32C3BD6CC007008F1 /* libdlib.a */,
 				B931BA6C2C121311000AAFAE /* SDL2 */,
 				B912F7492BEDD3EE0070F241 /* FFmpeg-iOS */,
@@ -1097,6 +1100,7 @@
 				B9071DE12C3C230E007008F1 /* shape_predictor_68_face_landmarks.dat in Resources */,
 				B91BB5612C7B9AD100A2CE7B /* shaderf.glsl in Resources */,
 				B91BB5622C7B9AD100A2CE7B /* shaderv.glsl in Resources */,
+				B9F001992C9BD2DF009BF7CA /* mmod_human_face_detector.dat in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
