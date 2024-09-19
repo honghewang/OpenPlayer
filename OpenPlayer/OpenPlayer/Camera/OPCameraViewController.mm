@@ -102,7 +102,7 @@
         CFRetain(sampleBuffer);
         dispatch_async(self.refreshQueue, ^{
             CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-            [self.playerView loadImgBuffer2:imageBuffer];
+            [self.playerView loadImgBuffer:imageBuffer];
             CFRelease(sampleBuffer);
         });
 

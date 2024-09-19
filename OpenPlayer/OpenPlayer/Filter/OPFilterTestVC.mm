@@ -89,8 +89,8 @@
     NSString *imgName = self.index % 2 == 0 ? @"face" : @"face2";
     self.index++;
     NSString *path = [[NSBundle mainBundle] pathForResource:imgName ofType:@"jpeg"];
-    [self.gpuView loadImgMat:OPCVUtils::imgWithFile(path.UTF8String)];
-    [self.asyngpuView loadImgMat:OPCVUtils::imgWithFile(path.UTF8String)];
+    [self.gpuView loadImgMat:OPCVUtils::imgRGBWithFile(path.UTF8String)];
+    [self.asyngpuView loadImgMat:OPCVUtils::imgRGBWithFile(path.UTF8String)];
 }
 
 @end

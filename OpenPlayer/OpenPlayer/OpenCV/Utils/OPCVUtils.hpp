@@ -35,7 +35,7 @@ public:
     static cv::Mat imgWithFile(std::string file);
     static cv::Mat imgRGBWithFile(std::string file);
     static cv::Mat imgRGBWithMat(cv::Mat& mat);
-    static cv::Mat imgBGRWithYUVMat(cv::Mat& yuv);
+    static cv::Mat imgRGBWithYUVMat(cv::Mat& yuv);
     static cv::Mat imgGrayWithYUVMat(cv::Mat& yuv);
     
     void loadModel(std::string facepoint, std::string faceModel);

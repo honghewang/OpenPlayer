@@ -13,7 +13,7 @@ void OPFilterAICenter::detectorImg(std::shared_ptr<OPFilterInputMat> inputMat) {
         return;
     }
     std::vector<dlib::full_object_detection> facePoints;
-    if (inputMat->type == OPFilterInputMatType_BGR) {
+    if (inputMat->type == OPFilterInputMatType_RGB) {
         facePoints = OPCVUtils::getInstance()->detectorImg(inputMat->imageMat);
     } else {
         facePoints = OPCVUtils::getInstance()->detectorGrayImg(inputMat->imageMat);

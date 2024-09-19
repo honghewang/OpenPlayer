@@ -12,7 +12,7 @@
 #include "OPCVUtils.hpp"
 
 enum OPFilterInputMatType {
-    OPFilterInputMatType_BGR,
+    OPFilterInputMatType_RGB,
     OPFilterInputMatType_YUV,
 };
 
@@ -23,7 +23,7 @@ public:
     cv::Mat imageMat2;
     bool isHighStandard;
     
-    OPFilterInputMat(cv::Mat& mat): imageMat(mat), type(OPFilterInputMatType_BGR){}
+    OPFilterInputMat(cv::Mat& mat): imageMat(mat), type(OPFilterInputMatType_RGB){}
     OPFilterInputMat(cv::Mat& matY, cv::Mat& matUV, bool high = true): imageMat(matY), imageMat2(matUV), isHighStandard(high), type(OPFilterInputMatType_YUV){}
     ~OPFilterInputMat() {}
 };

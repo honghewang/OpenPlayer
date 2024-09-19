@@ -109,7 +109,7 @@ NSString *const OPFilterRefreshNotification = @"OPFilterRefreshNotification";
     int hei = (int)CVPixelBufferGetHeight(imgBuffer);
     int row = (int)CVPixelBufferGetBytesPerRowOfPlane(imgBuffer, 0);
     cv::Mat img = cv::Mat(hei*1.5, wid, CV_8UC1, yuv, row);
-    cv::Mat img2 = OPCVUtils::imgBGRWithYUVMat(img);
+    cv::Mat img2 = OPCVUtils::imgRGBWithYUVMat(img);
     CVPixelBufferUnlockBaseAddress(imgBuffer,0);
     process->process(std::make_shared<OPFilterInputMat>(img2));
 }

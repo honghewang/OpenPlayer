@@ -105,7 +105,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         OPOpenCVTestVC *strongSelf = weakSelf;
         NSString *path = [[NSBundle mainBundle] pathForResource:@"face" ofType:@"jpeg"];
-        auto img = OPCVUtils::imgWithFile(path.UTF8String);
+        auto img = OPCVUtils::imgRGBWithFile(path.UTF8String);
         std::vector<float> facePoint;
         OPCVUtils::getInstance()->detectorImgTest(img, facePoint);
         NSMutableArray *faceList = [NSMutableArray array];
@@ -115,7 +115,7 @@
         
         [strongSelf processFacePoints:faceList];
         
-        UIImage *faceImg = [strongSelf UIImageFromCVMat:OPCVUtils::imgRGBWithMat(img)];
+        UIImage *faceImg = [strongSelf UIImageFromCVMat:img];
         dispatch_async(dispatch_get_main_queue(), ^{
             strongSelf.imgView.image = faceImg;
             [strongSelf.loadingView stopAnimating];

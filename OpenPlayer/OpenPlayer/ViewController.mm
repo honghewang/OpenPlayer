@@ -40,7 +40,7 @@
     [self.tableView registerClass:TableViewCell.class forCellReuseIdentifier:NSStringFromClass(TableViewCell.class)];
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"shape_predictor_68_face_landmarks" ofType:@"dat"];
-    NSString *facePath = [[NSBundle mainBundle] pathForResource:@"haarcascade_frontalface_default" ofType:@"xml"];
+    NSString *facePath = [[NSBundle mainBundle] pathForResource:@"mmod_human_face_detector" ofType:@"dat"];
     OPCVUtils::getInstance()->loadModel(path.UTF8String, facePath.UTF8String);
 }
 

@@ -55,9 +55,9 @@ cv::Mat OPCVUtils::imgRGBWithMat(cv::Mat& mat) {
     return des;
 }
 
-cv::Mat OPCVUtils::imgBGRWithYUVMat(cv::Mat& yuv) {
+cv::Mat OPCVUtils::imgRGBWithYUVMat(cv::Mat& yuv) {
     cv::Mat des;
-    cv::cvtColor(yuv, des, cv::COLOR_YUV420sp2RGB);
+    cv::cvtColor(yuv, des, cv::COLOR_YUV420sp2BGR);
     return des;
 }
 
@@ -78,46 +78,42 @@ OPCVUtils *OPCVUtils::getInstance() {
 
 
 void OPCVUtils::loadModel(std::string facepoint, std::string faceModel) {
-    dlib::deserialize(facepoint) >> predictor->share_predictor;
-    predictor->model.load(faceModel.c_str());
+    dlib::deserialize(faceModel) >> predictor->face_predictor;
+    dlib::deserialize(facepoint) >> predictor->facepoint_predictor;
 }
 
 
 std::vector<dlib::full_object_detection> OPCVUtils::detectorImg(cv::Mat& img) {
-    cv::Mat des;
-    cv::cvtColor(img, des, cv::COLOR_BGR2GRAY);
-    std::vector<cv::Rect> faces;
-    dlib::cv_image<dlib::bgr_pixel> dlibFrame(img);
+    dlib::cv_image<dlib::rgb_pixel> dlibCVImg(img);
+    dlib::matrix<dlib::rgb_pixel> dlibMatrix;
+    dlib::assign_image(dlibMatrix, dlibCVImg);
     
-    {
-        std::lock_guard<std::mutex> lock(mtx);
-        predictor->model.detectMultiScale(des, faces);
-    }
+    std::lock_guard<std::mutex> locker(OPCVUtils::mtx);
+    auto faceDets = predictor->face_predictor(dlibMatrix);
     std::vector<dlib::full_object_detection> facePoints;
-    for (const auto& faceRect : faces) {
-        dlib::rectangle face(faceRect.x, faceRect.y, faceRect.x + faceRect.width, faceRect.y + faceRect.height);
-        dlib::full_object_detection shape = predictor->share_predictor(dlibFrame, face);
+    for (const auto& faceDet : faceDets) {
+        dlib::rectangle face = faceDet.rect;
+        dlib::full_object_detection shape = predictor->facepoint_predictor(dlibCVImg, face);
         facePoints.push_back(shape);
     }
     return facePoints;
 }
 
 std::vector<dlib::full_object_detection> OPCVUtils::detectorGrayImg(cv::Mat& img) {
-    cv::Mat des = img;
-    
-    // 将灰度图转换为BGR图
+    // 将灰度图转换为RGB图
     cv::Mat bgr_img;
-    cvtColor(img, bgr_img, cv::COLOR_GRAY2BGR);
-    dlib::cv_image<dlib::bgr_pixel> dlibFrame(bgr_img);
-    std::vector<cv::Rect> faces;    
-    {
-        std::lock_guard<std::mutex> lock(mtx);
-        predictor->model.detectMultiScale(des, faces);
-    }
+    cvtColor(img, bgr_img, cv::COLOR_GRAY2RGB);
+    
+    dlib::cv_image<dlib::rgb_pixel> dlibCVImg(bgr_img);
+    dlib::matrix<dlib::rgb_pixel> dlibMatrix;
+    dlib::assign_image(dlibMatrix, dlibCVImg);
+    
+    std::lock_guard<std::mutex> locker(OPCVUtils::mtx);
+    auto faceDets = predictor->face_predictor(dlibMatrix);
     std::vector<dlib::full_object_detection> facePoints;
-    for (const auto& faceRect : faces) {
-        dlib::rectangle face(faceRect.x, faceRect.y, faceRect.x + faceRect.width, faceRect.y + faceRect.height);
-        dlib::full_object_detection shape = predictor->share_predictor(dlibFrame, face);
+    for (const auto& faceDet : faceDets) {
+        dlib::rectangle face = faceDet.rect;
+        dlib::full_object_detection shape = predictor->facepoint_predictor(dlibCVImg, face);
         facePoints.push_back(shape);
     }
     return facePoints;
@@ -126,41 +122,41 @@ std::vector<dlib::full_object_detection> OPCVUtils::detectorGrayImg(cv::Mat& img
 std::vector<dlib::full_object_detection> OPCVUtils::detectorImg2(cv::Mat& img) {
     dlib::frontal_face_detector faceDetector = dlib::get_frontal_face_detector();
     dlib::cv_image<dlib::bgr_pixel> dlibFrame(img);
+    std::lock_guard<std::mutex> locker(OPCVUtils::mtx);
     std::vector<dlib::rectangle> faces = faceDetector(dlibFrame);
     std::vector<dlib::full_object_detection> facePoints;
     for (const auto& faceRect : faces) {
         dlib::rectangle face(faceRect.left(), faceRect.top(), faceRect.right(), faceRect.bottom());
-        dlib::full_object_detection shape = predictor->share_predictor(dlibFrame, face);
+        dlib::full_object_detection shape = predictor->facepoint_predictor(dlibFrame, face);
         facePoints.push_back(shape);
     }
     return facePoints;
 }
 
 void OPCVUtils::detectorImgTest(cv::Mat& img, std::vector<float> &vct) {
-    cv::Mat des;
-    cv::cvtColor(img, des, cv::COLOR_BGR2GRAY);
-    std::vector<cv::Rect> faces;
-    dlib::cv_image<dlib::bgr_pixel> dlibFrame(img);
+    dlib::cv_image<dlib::rgb_pixel> dlibCVImg(img);
+    dlib::matrix<dlib::rgb_pixel> dlibMatrix;
+    dlib::assign_image(dlibMatrix, dlibCVImg);
     
-    predictor->model.detectMultiScale(des, faces);
-    for (const auto& faceRect : faces) {
-        dlib::rectangle face(faceRect.x, faceRect.y, faceRect.x + faceRect.width, faceRect.y + faceRect.height);
-        dlib::full_object_detection shape = predictor->share_predictor(dlibFrame, face);
-        
+    std::lock_guard<std::mutex> locker(OPCVUtils::mtx);
+    auto faceDets = predictor->face_predictor(dlibMatrix);
+    for (const auto& faceDet : faceDets) {
+        dlib::rectangle face = faceDet.rect;
+        dlib::full_object_detection shape = predictor->facepoint_predictor(dlibCVImg, face);
         for (int i = 1; i < 15; i++) {
             vct.push_back(shape.part(28).x());
             vct.push_back(shape.part(28).y());
-            
+
             vct.push_back(shape.part(i).x());
             vct.push_back(shape.part(i).y());
-            
+
             vct.push_back(shape.part(i+1).x());
             vct.push_back(shape.part(i+1).y());
         }
         for (int i = 0; i < shape.num_parts(); i++) {
-            cv::circle(img, cv::Point(shape.part(i).x(), shape.part(i).y()), 3, cv::Scalar(0, 0, 255));
+            cv::circle(img, cv::Point(shape.part(i).x(), shape.part(i).y()), 3, cv::Scalar(255, 0, 0));
         }
-        cv::rectangle(img, cv::Point(face.left(), face.top()), cv::Point(face.right(), face.bottom()), cv::Scalar(255, 0, 0));
+        cv::rectangle(img, cv::Point(face.left(), face.top()), cv::Point(face.right(), face.bottom()), cv::Scalar(0, 0, 255));
     }
 }
 

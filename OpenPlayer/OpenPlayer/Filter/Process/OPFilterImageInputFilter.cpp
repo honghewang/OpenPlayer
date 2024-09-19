@@ -141,7 +141,7 @@ std::shared_ptr<OPFilterFrameBufferBox> OPFilterImageInputFilter::renderRGB() {
     GLuint texture = frameBufferBox->frameBuffer->texture;
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, texture);
-    cv::Mat mat = OPCVUtils::imgRGBWithMat(inputMat->imageMat);
+    cv::Mat mat = inputMat->imageMat;
     if (!mat.isContinuous()) {
         mat = inputMat->imageMat.clone();
     }
