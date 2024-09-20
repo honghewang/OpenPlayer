@@ -73,7 +73,7 @@ std::map<std::string, std::string> OPFragmentShaderMap = {
        )"
     },{OPFilterYUVFragmentShaderString,
        R"(
-       precision highp float;
+       precision mediump float;
        varying vec2 textureCoordinate;
        uniform sampler2D SamplerY;
        uniform sampler2D SamplerUV;

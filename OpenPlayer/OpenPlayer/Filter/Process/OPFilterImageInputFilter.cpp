@@ -54,7 +54,7 @@ std::shared_ptr<OPFilterFrameBufferBox> OPFilterImageInputFilter::renderYUV() {
     auto info = infoCenter.lock();
     std::shared_ptr<OPFilterFrameBufferBox> frameBufferBox = info->bufferCache->fetchFramebufferForSize(info->width, info->height);
     frameBufferBox->frameBuffer->activateFramebuffer();
-
+    
     //1.设置视口大小
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -93,29 +93,6 @@ std::shared_ptr<OPFilterFrameBufferBox> OPFilterImageInputFilter::renderYUV() {
     glBufferData(GL_ARRAY_BUFFER, sizeof(attrArr), attrArr, GL_STREAM_DRAW);
 
 
-    std::shared_ptr<OPFilterFrameBufferBox> frameBufferBoxY = infoCenter.lock()->bufferCache->fetchFramebufferForSize(inputMat->imageMat.cols, inputMat->imageMat.rows, true);
-    GLuint textureY = frameBufferBoxY->frameBuffer->texture;
-    GLuint uniformY = program->uniformIndex("SamplerY");
-    glActiveTexture(GL_TEXTURE0 + uniformY);
-    glBindTexture(GL_TEXTURE_2D, textureY);
-    cv::Mat matY = inputMat->imageMat;
-    if (!matY.isContinuous()) {
-        matY = inputMat->imageMat.clone();
-    }
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, matY.cols, matY.rows, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, matY.data);
-
-    std::shared_ptr<OPFilterFrameBufferBox> frameBufferBoxUV = infoCenter.lock()->bufferCache->fetchFramebufferForSize(inputMat->imageMat2.cols, inputMat->imageMat2.rows, true);
-
-    GLuint textureUV = frameBufferBoxUV->frameBuffer->texture;
-    GLuint uniformUV = program->uniformIndex("SamplerUV");
-    glActiveTexture(GL_TEXTURE0 + uniformUV);
-    glBindTexture(GL_TEXTURE_2D, textureUV);
-    cv::Mat matUV = inputMat->imageMat2;
-    if (!matUV.isContinuous()) {
-        matUV = inputMat->imageMat.clone();
-    }
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE_ALPHA, matUV.cols, matUV.rows, 0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, matUV.data);
-
     GLuint position = program->attributeIndex("position");
     glEnableVertexAttribArray(position);
     glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, NULL);
@@ -127,6 +104,31 @@ std::shared_ptr<OPFilterFrameBufferBox> OPFilterImageInputFilter::renderYUV() {
     const GLfloat *conversion = inputMat->isHighStandard ? kColorConversion709 : kColorConversion601;
     GLuint uniformMatrix = program->uniformIndex("colorConversionMatrix");
     glUniformMatrix3fv(uniformMatrix, 1, GL_FALSE, conversion);
+    
+    std::shared_ptr<OPFilterFrameBufferBox> frameBufferBoxY = infoCenter.lock()->bufferCache->fetchFramebufferForSize(inputMat->imageMat.cols, inputMat->imageMat.rows, true);
+    GLuint textureY = frameBufferBoxY->frameBuffer->texture;
+    GLuint uniformY = program->uniformIndex("SamplerY");
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, textureY);
+    cv::Mat matY = inputMat->imageMat;
+    if (!matY.isContinuous()) {
+        matY = inputMat->imageMat.clone();
+    }
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, matY.cols, matY.rows, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, matY.data);
+    glUniform1i(uniformY, 1);
+
+    std::shared_ptr<OPFilterFrameBufferBox> frameBufferBoxUV = infoCenter.lock()->bufferCache->fetchFramebufferForSize(inputMat->imageMat2.cols, inputMat->imageMat2.rows, true);
+
+    GLuint textureUV = frameBufferBoxUV->frameBuffer->texture;
+    GLuint uniformUV = program->uniformIndex("SamplerUV");
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, textureUV);
+    cv::Mat matUV = inputMat->imageMat2;
+    if (!matUV.isContinuous()) {
+        matUV = inputMat->imageMat.clone();
+    }
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE_ALPHA, matUV.cols, matUV.rows, 0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, matUV.data);
+    glUniform1i(uniformUV, 2);
 
     //12.绘图
     glDrawArrays(GL_TRIANGLES, 0, 6);
