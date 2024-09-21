@@ -29,7 +29,9 @@ private:
     
 public:
     static OPCVUtils *instance;
-    static std::mutex mtx;
+    static std::mutex instanceMtx;
+    static std::mutex faceMtx;
+    static std::mutex facePointMtx;
     static OPCVUtils *getInstance();
     
     static cv::Mat imgWithFile(std::string file);

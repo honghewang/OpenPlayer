@@ -24,7 +24,9 @@
 
 // 静态成员初始化
 OPCVUtils *OPCVUtils::instance = nullptr;
-std::mutex  OPCVUtils::mtx;
+std::mutex OPCVUtils::faceMtx;
+std::mutex OPCVUtils::facePointMtx;
+std::mutex OPCVUtils::instanceMtx;
 
 void printCurrentTime();
 
@@ -69,7 +71,7 @@ cv::Mat OPCVUtils::imgGrayWithYUVMat(cv::Mat& yuv) {
 }
 
 OPCVUtils *OPCVUtils::getInstance() {
-    std::lock_guard<std::mutex> lock(mtx);
+    std::lock_guard<std::mutex> lock(OPCVUtils::instanceMtx);
     if (instance == nullptr) {
         instance = new OPCVUtils();
     }
@@ -78,8 +80,14 @@ OPCVUtils *OPCVUtils::getInstance() {
 
 
 void OPCVUtils::loadModel(std::string facepoint, std::string faceModel) {
-    dlib::deserialize(faceModel) >> predictor->face_predictor;
-    dlib::deserialize(facepoint) >> predictor->facepoint_predictor;
+    {
+        std::lock_guard<std::mutex> lock(OPCVUtils::faceMtx);
+        dlib::deserialize(faceModel) >> predictor->face_predictor;
+    }
+    {
+        std::lock_guard<std::mutex> lock(OPCVUtils::facePointMtx);
+        dlib::deserialize(facepoint) >> predictor->facepoint_predictor;
+    }
 }
 
 
@@ -88,11 +96,15 @@ std::vector<dlib::full_object_detection> OPCVUtils::detectorImg(cv::Mat& img) {
     dlib::matrix<dlib::rgb_pixel> dlibMatrix;
     dlib::assign_image(dlibMatrix, dlibCVImg);
     
-    std::lock_guard<std::mutex> locker(OPCVUtils::mtx);
-    auto faceDets = predictor->face_predictor(dlibMatrix);
+    std::vector<dlib::mmod_rect> faceDets;
+    {
+    std::lock_guard<std::mutex> faceLocker(OPCVUtils::faceMtx);
+    faceDets = predictor->face_predictor(dlibMatrix);
+    }
     std::vector<dlib::full_object_detection> facePoints;
     for (const auto& faceDet : faceDets) {
         dlib::rectangle face = faceDet.rect;
+        std::lock_guard<std::mutex> pointLocker(OPCVUtils::facePointMtx);
         dlib::full_object_detection shape = predictor->facepoint_predictor(dlibCVImg, face);
         facePoints.push_back(shape);
     }
@@ -101,18 +113,22 @@ std::vector<dlib::full_object_detection> OPCVUtils::detectorImg(cv::Mat& img) {
 
 std::vector<dlib::full_object_detection> OPCVUtils::detectorGrayImg(cv::Mat& img) {
     // 将灰度图转换为RGB图
-    cv::Mat bgr_img;
-    cvtColor(img, bgr_img, cv::COLOR_GRAY2RGB);
+    cv::Mat rgb_img;
+    cvtColor(img, rgb_img, cv::COLOR_GRAY2RGB);
     
-    dlib::cv_image<dlib::rgb_pixel> dlibCVImg(bgr_img);
+    dlib::cv_image<dlib::rgb_pixel> dlibCVImg(rgb_img);
     dlib::matrix<dlib::rgb_pixel> dlibMatrix;
     dlib::assign_image(dlibMatrix, dlibCVImg);
     
-    std::lock_guard<std::mutex> locker(OPCVUtils::mtx);
-    auto faceDets = predictor->face_predictor(dlibMatrix);
+    std::vector<dlib::mmod_rect> faceDets;
+    {
+    std::lock_guard<std::mutex> faceLocker(OPCVUtils::faceMtx);
+    faceDets = predictor->face_predictor(dlibMatrix);
+    }
     std::vector<dlib::full_object_detection> facePoints;
     for (const auto& faceDet : faceDets) {
         dlib::rectangle face = faceDet.rect;
+        std::lock_guard<std::mutex> pointLocker(OPCVUtils::facePointMtx);
         dlib::full_object_detection shape = predictor->facepoint_predictor(dlibCVImg, face);
         facePoints.push_back(shape);
     }
@@ -122,11 +138,15 @@ std::vector<dlib::full_object_detection> OPCVUtils::detectorGrayImg(cv::Mat& img
 std::vector<dlib::full_object_detection> OPCVUtils::detectorImg2(cv::Mat& img) {
     dlib::frontal_face_detector faceDetector = dlib::get_frontal_face_detector();
     dlib::cv_image<dlib::bgr_pixel> dlibFrame(img);
-    std::lock_guard<std::mutex> locker(OPCVUtils::mtx);
+    std::vector<dlib::rectangle> faces;
+    {
+    std::lock_guard<std::mutex> locker(OPCVUtils::faceMtx);
     std::vector<dlib::rectangle> faces = faceDetector(dlibFrame);
+    }
     std::vector<dlib::full_object_detection> facePoints;
     for (const auto& faceRect : faces) {
         dlib::rectangle face(faceRect.left(), faceRect.top(), faceRect.right(), faceRect.bottom());
+        std::lock_guard<std::mutex> pointLocker(OPCVUtils::facePointMtx);
         dlib::full_object_detection shape = predictor->facepoint_predictor(dlibFrame, face);
         facePoints.push_back(shape);
     }
@@ -138,10 +158,14 @@ void OPCVUtils::detectorImgTest(cv::Mat& img, std::vector<float> &vct) {
     dlib::matrix<dlib::rgb_pixel> dlibMatrix;
     dlib::assign_image(dlibMatrix, dlibCVImg);
     
-    std::lock_guard<std::mutex> locker(OPCVUtils::mtx);
-    auto faceDets = predictor->face_predictor(dlibMatrix);
+    std::vector<dlib::mmod_rect> faceDets;
+    {
+    std::lock_guard<std::mutex> faceLocker(OPCVUtils::faceMtx);
+    faceDets = predictor->face_predictor(dlibMatrix);
+    }
     for (const auto& faceDet : faceDets) {
         dlib::rectangle face = faceDet.rect;
+        std::lock_guard<std::mutex> pointLocker(OPCVUtils::facePointMtx);
         dlib::full_object_detection shape = predictor->facepoint_predictor(dlibCVImg, face);
         for (int i = 1; i < 15; i++) {
             vct.push_back(shape.part(28).x());

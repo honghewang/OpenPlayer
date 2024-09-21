@@ -48,11 +48,11 @@
     self.playerView = [[OPCapturePreview alloc] initWithAsyn:YES];
     self.playerView.frame = CGRectMake(0, 0, size.width, size.height);
     self.playerView.backgroundColor = [UIColor blackColor];
-//    std::shared_ptr<OPFilterRenderFilterLink> pointLink = std::make_shared<OPFilterRenderFilterLink>();
-//    std::shared_ptr<OPFilterFacePointsFilter> facePointsFilter = std::make_shared<OPFilterFacePointsFilter>();
-//    pointLink->input = facePointsFilter;
-//    pointLink->output = facePointsFilter;
-//    [self.playerView setFilterLinks:pointLink];
+    std::shared_ptr<OPFilterRenderFilterLink> pointLink = std::make_shared<OPFilterRenderFilterLink>();
+    std::shared_ptr<OPFilterFacePointsFilter> facePointsFilter = std::make_shared<OPFilterFacePointsFilter>();
+    pointLink->input = facePointsFilter;
+    pointLink->output = facePointsFilter;
+    [self.playerView setFilterLinks:pointLink];
     [self.view addSubview:self.playerView];
     
     
