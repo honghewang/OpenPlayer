@@ -33,7 +33,6 @@ private:
     
     std::mutex mutex;
     
-    std::shared_ptr<OPFilterAIModel> preAIInfo;
     std::shared_ptr<OPFilterAIModel> curAIInfo;
 public:
     OPFilterAICenter(bool async) : asyncRender(async) {}

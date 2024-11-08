@@ -20,7 +20,6 @@ void OPFilterAICenter::detectorImg(std::shared_ptr<OPFilterInputMat> inputMat) {
     }
     {
         std::lock_guard<std::mutex> locker(mutex);
-        preAIInfo = curAIInfo;
         std::shared_ptr<OPFilterAIInfo> aiInfo = std::make_shared<OPFilterAIInfo>();
         aiInfo->facePoints = std::move(facePoints);
         curAIInfo = std::make_shared<OPFilterAIModel>(inputMat, aiInfo);
@@ -29,15 +28,6 @@ void OPFilterAICenter::detectorImg(std::shared_ptr<OPFilterInputMat> inputMat) {
 
 std::shared_ptr<OPFilterAIModel> OPFilterAICenter::getAIInfo(bool isPop) {
     std::lock_guard<std::mutex> locker(mutex);
-    if (asyncRender) {
-        if (isPop) {
-            auto tmpInfo = preAIInfo;
-            preAIInfo.reset();
-            return tmpInfo;
-        } else {
-            return preAIInfo;
-        }
-    }
     if (isPop) {
         auto tmpInfo = curAIInfo;
         curAIInfo.reset();

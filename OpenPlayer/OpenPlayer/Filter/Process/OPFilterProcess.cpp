@@ -43,9 +43,12 @@ void OPFilterProcess::startAIProcess() {
             if (asyncRender) {
                 std::shared_ptr<OPFilterAIModel> aiModel = AICenter->getAIInfo(false);
                 if (aiModel.get() != nullptr && aiModel->inputMat.get() != nullptr && aiModel->inputMat->imageMat.rows > 0) {
+                    printf("startAIProcess ++++++++++++++++2 \n");
                     renderCondition.notify_one();
+                    
                 }
             }
+            printf("startAIProcess ++++++++++++++++1 \n");
             AICenter->detectorImg(inputMat);
             if (!asyncRender) {
                 renderCondition.notify_one();
@@ -54,21 +57,22 @@ void OPFilterProcess::startAIProcess() {
         }
     }
     std::unique_lock<std::mutex> locker(AIMutex);
-    AICondition.wait_for(locker, std::chrono::milliseconds(40));
+    AICondition.wait(locker);
 }
 
 void OPFilterProcess::stop() {
     isProcessing = false;
+    AICondition.notify_one();
+    renderCondition.notify_one();
 }
 
 void OPFilterProcess::startRenderProcess() {
     std::unique_lock<std::mutex> locker(renderMutex);
-    renderCondition.wait_for(locker, std::chrono::milliseconds(40));
+    renderCondition.wait(locker);
     std::shared_ptr<OPFilterAIModel> aiModel = AICenter->getAIInfo(true);
     if (aiModel.get() != nullptr && aiModel->inputMat.get() != nullptr && aiModel->inputMat->imageMat.rows > 0) {
         renderContext->render(aiModel);
     }
-    
 }
 
 void OPFilterProcess::setMatInput(std::shared_ptr<OPFilterInputMat> input) {

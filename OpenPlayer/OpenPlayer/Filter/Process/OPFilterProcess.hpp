@@ -22,7 +22,7 @@
 class OPFilterProcess : public std::enable_shared_from_this<OPFilterProcess> {
 public:
     bool asyncRender;
-    std::atomic<bool> isProcessing= false;
+    std::atomic<bool> isProcessing = false;
     
     std::shared_ptr<OPFilterAICenter> AICenter;
     std::shared_ptr<OPFilterRenderContext> renderContext = std::make_shared<OPFilterRenderContext>();

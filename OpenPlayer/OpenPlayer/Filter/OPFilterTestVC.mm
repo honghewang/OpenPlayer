@@ -23,6 +23,9 @@
 @property (nonatomic, strong) UIImageView *imgView;
 
 @property (nonatomic, assign) int index;
+@property (nonatomic, strong) UIButton *btn;
+@property (nonatomic, assign) int asyncIndex;
+@property (nonatomic, strong) UIButton *asyncBtn;
 
 @end
 
@@ -72,17 +75,32 @@
     pointLink->output = facePointsFilter;
     [self.asyngpuView setFilterLinks:pointLink];
     
-    UIButton *bnt = [[UIButton alloc] init];
-    [self.view addSubview:bnt];
-    bnt.backgroundColor = [UIColor redColor];
-    [bnt setTitle:@"开始" forState:UIControlStateNormal];
-    [bnt addTarget:self action:@selector(startProcess) forControlEvents:UIControlEventTouchUpInside];
-    [bnt mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(80);
+    UIButton *btn = [[UIButton alloc] init];
+    [self.view addSubview:btn];
+    btn.backgroundColor = [UIColor redColor];
+    [btn setTitle:@"同步AI开始" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(startProcess) forControlEvents:UIControlEventTouchUpInside];
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(200);
         make.height.mas_equalTo(60);
         make.centerX.mas_equalTo(0);
         make.bottom.mas_equalTo(self.gpuView.mas_top);
     }];
+    self.btn = btn;
+    
+    UIButton *asyncBtn = [[UIButton alloc] init];
+    [self.view addSubview:asyncBtn];
+    asyncBtn.backgroundColor = [UIColor redColor];
+    [asyncBtn setTitle:@"异步AI开始" forState:UIControlStateNormal];
+    [asyncBtn addTarget:self action:@selector(asynStartProcess) forControlEvents:UIControlEventTouchUpInside];
+    [asyncBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(200);
+        make.height.mas_equalTo(60);
+        make.centerX.mas_equalTo(0);
+        make.top.mas_equalTo(self.asyngpuView.mas_bottom);
+    }];
+    self.asyncBtn = asyncBtn;
+
 }
 
 - (void)startProcess {
@@ -90,7 +108,16 @@
     self.index++;
     NSString *path = [[NSBundle mainBundle] pathForResource:imgName ofType:@"jpeg"];
     [self.gpuView loadImgMat:OPCVUtils::imgRGBWithFile(path.UTF8String)];
+    [self.btn setTitle:[NSString stringWithFormat:@"同步AI开始:%d", self.index] forState:UIControlStateNormal];
+}
+
+- (void)asynStartProcess {
+    NSString *imgName = self.asyncIndex % 2 == 0 ? @"face" : @"face2";
+    self.asyncIndex++;
+    NSString *path = [[NSBundle mainBundle] pathForResource:imgName ofType:@"jpeg"];
     [self.asyngpuView loadImgMat:OPCVUtils::imgRGBWithFile(path.UTF8String)];
+    [self.asyncBtn setTitle:[NSString stringWithFormat:@"异步AI开始:%d", self.asyncIndex] forState:UIControlStateNormal];
+    
 }
 
 @end
