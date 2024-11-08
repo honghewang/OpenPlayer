@@ -43,12 +43,10 @@ void OPFilterProcess::startAIProcess() {
             if (asyncRender) {
                 std::shared_ptr<OPFilterAIModel> aiModel = AICenter->getAIInfo(false);
                 if (aiModel.get() != nullptr && aiModel->inputMat.get() != nullptr && aiModel->inputMat->imageMat.rows > 0) {
-                    printf("startAIProcess ++++++++++++++++2 \n");
                     renderCondition.notify_one();
                     
                 }
             }
-            printf("startAIProcess ++++++++++++++++1 \n");
             AICenter->detectorImg(inputMat);
             if (!asyncRender) {
                 renderCondition.notify_one();
