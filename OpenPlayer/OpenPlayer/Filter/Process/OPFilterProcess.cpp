@@ -30,14 +30,14 @@ void OPFilterProcess::process(std::shared_ptr<OPFilterInputMat> input) {
             renderTread.detach();
         }
     }
-    setMatInput(input);
+    pushMatInput(input);
     isProcessing = true;
     AICondition.notify_one();
 }
 
 
 void OPFilterProcess::startAIProcess() {
-    std::shared_ptr<OPFilterInputMat> inputMat = getMatInput();
+    std::shared_ptr<OPFilterInputMat> inputMat = popMatInput();
     if (inputMat.get() != nullptr) {
         if (inputMat->imageMat.rows != 0) {
             if (asyncRender) {
@@ -51,11 +51,11 @@ void OPFilterProcess::startAIProcess() {
             if (!asyncRender) {
                 renderCondition.notify_one();
             }
-            clearMatInput();
         }
+    } else {
+        std::unique_lock<std::mutex> locker(AIMutex);
+        AICondition.wait(locker);
     }
-    std::unique_lock<std::mutex> locker(AIMutex);
-    AICondition.wait(locker);
 }
 
 void OPFilterProcess::stop() {
@@ -73,19 +73,20 @@ void OPFilterProcess::startRenderProcess() {
     }
 }
 
-void OPFilterProcess::setMatInput(std::shared_ptr<OPFilterInputMat> input) {
+void OPFilterProcess::pushMatInput(std::shared_ptr<OPFilterInputMat> input) {
     std::lock_guard<std::mutex> locker(processMutex);
-    this->inputMat = input;
+    inputStack.push(input);
 }
 
-void OPFilterProcess::clearMatInput() {
+std::shared_ptr<OPFilterInputMat> OPFilterProcess::popMatInput() {
     std::lock_guard<std::mutex> locker(processMutex);
-    inputMat.reset();
-}
-
-std::shared_ptr<OPFilterInputMat> OPFilterProcess::getMatInput() {
-    std::lock_guard<std::mutex> locker(processMutex);
-    return inputMat;
+    if (inputStack.empty()) {
+        return nullptr;
+    } else {
+        auto top = inputStack.top();
+        inputStack.pop();
+        return top;
+    }
 }
 
 void OPFilterProcess::setFilterLinks(std::shared_ptr<OPFilterRenderFilterLink> link) {

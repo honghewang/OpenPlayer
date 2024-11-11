@@ -18,6 +18,7 @@
 #include "OPFilterInputMat.hpp"
 #include <opencv2/core.hpp>
 #include <memory>
+#include <stack>
 
 class OPFilterProcess : public std::enable_shared_from_this<OPFilterProcess> {
 public:
@@ -38,10 +39,8 @@ public:
     
     void startRenderProcess();
     
-    void setMatInput(std::shared_ptr<OPFilterInputMat> input);
-    void clearMatInput();
-    
-    std::shared_ptr<OPFilterInputMat> getMatInput();
+    void pushMatInput(std::shared_ptr<OPFilterInputMat> input);
+    std::shared_ptr<OPFilterInputMat> popMatInput();
     
     void setFilterLinks(std::shared_ptr<OPFilterRenderFilterLink> link);
     
@@ -50,7 +49,8 @@ public:
     void setRefreshFunc(std::function<void(int texture)> refreshFunc);
     
 private:
-    std::shared_ptr<OPFilterInputMat> inputMat;
+    
+    std::stack<std::shared_ptr<OPFilterInputMat>> inputStack;
     std::mutex processMutex;
     
     std::mutex AIMutex;

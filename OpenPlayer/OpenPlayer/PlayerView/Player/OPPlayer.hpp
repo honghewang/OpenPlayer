@@ -45,6 +45,8 @@ public:
     void stop();
     // seek
     void seek(double time);
+    
+    // 回调方法
     // 设置刷新
     void setRefreshFunc(std::function<void(int width, int height, char *yData, char *uData, char *vData)> func);
     void setUpdateTimeFunc(std::function<void(double cur, double totalTime)> func);
