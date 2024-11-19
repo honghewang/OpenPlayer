@@ -101,7 +101,7 @@
 
 - (void)detectorFaces {
     [self.loadingView startAnimating];
-    __weak typeof(self) weakSelf = self;
+    __weak OPOpenCVTestVC *weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         OPOpenCVTestVC *strongSelf = weakSelf;
         NSString *path = [[NSBundle mainBundle] pathForResource:@"face" ofType:@"jpeg"];

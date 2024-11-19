@@ -20,7 +20,7 @@ void OPFilterProcess::process(std::shared_ptr<OPFilterInputMat> input) {
     if (AICenter == nullptr) {
         AICenter = std::make_shared<OPFilterAICenter>(asyncRender);
         
-        std::weak_ptr<OPFilterProcess> weakProcess = weak_from_this();
+        std::weak_ptr<OPFilterProcess> weakProcess = shared_from_this();
         if (!AIThread.joinable()) {
             AIThread = std::thread(ai_thread_op, weakProcess);
             AIThread.detach();

@@ -42,7 +42,7 @@ public:
     /// 类型转换
     int mediaType(int streamType);
     // 当前播放tag
-    std::atomic<int> serial = 0;
+    std::atomic<int> serial{0};
     
     double getPlayTime();
     void setPlayTime(double time);
@@ -59,7 +59,7 @@ public:
     std::atomic<OPPlayerState> state;
     std::atomic<OPQueueState> queueState;
     
-    std::atomic<double> seekTime = -1.0;
+    std::atomic<double> seekTime{-1.0};
     
     // 设置刷新
     std::function<void(int width, int height, char *yData, char *uData, char *vData)> refreshFunc;
@@ -67,7 +67,7 @@ public:
     
     
 private:
-    std::atomic<int64_t> startTime = -1;
+    std::atomic<int64_t> startTime{-1};
 };
 
 #endif /* OPPlayerContext_hpp */

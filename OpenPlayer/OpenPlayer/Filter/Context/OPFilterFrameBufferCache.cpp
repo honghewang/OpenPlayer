@@ -40,7 +40,7 @@ std::shared_ptr<OPFilterFrameBufferBox> OPFilterFrameBufferCache::fetchFramebuff
     // 创建
     std::shared_ptr<OPFilterFrameBufferBox> frameBufferBox = std::make_shared<OPFilterFrameBufferBox>();
     frameBufferBox->frameBuffer = std::make_shared<OPFilterFrameBuffer>(width, height, options, onlyTexture);
-    frameBufferBox->weakCache = weak_from_this();
+    frameBufferBox->weakCache = shared_from_this();
     return frameBufferBox;
 }
 
@@ -51,7 +51,7 @@ void OPFilterFrameBufferCache::storeInCache(std::shared_ptr<OPFilterFrameBuffer>
     
     std::shared_ptr<OPFilterFrameBufferBox> frameBufferBox = std::make_shared<OPFilterFrameBufferBox>();
     frameBufferBox->frameBuffer = frameBuffer;
-    frameBufferBox->weakCache = weak_from_this();
+    frameBufferBox->weakCache = shared_from_this();
 
     std::string key = keyWithFrameBuffer(frameBuffer);
     if (bufferCache.find(key) == bufferCache.end()) {

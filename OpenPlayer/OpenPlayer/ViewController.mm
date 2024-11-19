@@ -14,6 +14,7 @@
 #import "OPFilterTestVC.h"
 #include "OPCVUtils.hpp"
 #import "OPCameraViewController.h"
+#import "OPPyTorchTestVC.h"
 
 @interface OPVCModel : NSObject
 
@@ -92,13 +93,18 @@
     model6.title = @"相机";
     model6.cls = OPCameraViewController.class;
     
+    OPVCModel *model7 = [[OPVCModel alloc] init];
+    model7.title = @"PyTorch模型测试，分割模型";
+    model7.cls = OPPyTorchTestVC.class;
+    
     return @[
         model1,
         model2,
         model3,
         model4,
         model5,
-        model6
+        model6,
+        model7
     ];
 }
 

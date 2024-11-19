@@ -12,7 +12,7 @@ void OPFilterInOut::addTarget(std::shared_ptr<OPFilterInOut> output) {
     if (output->inputInfos.size() < output->needInputs) {
         int index = output->inputInfos.size();
         auto input = std::make_shared<OPFilterInputInfo>();
-        input->InputFilter = weak_from_this();
+        input->InputFilter = shared_from_this();
         input->frameBufferBox.reset();
         output->inputInfos.push_back(input);
         

@@ -11,6 +11,7 @@ iOS音视频交流学习demo，包含C++播放器，人脸识别，滤镜链
 4. OpenCV+dlib，68人脸点，dlib::get_frontal_face_detector模拟器运行很慢，使用了haarcascade_frontalface_alt检测人脸
 5. C++实现了滤镜链，参考GPUImage，并加入了AI能力（人脸点），可以实现Mask等效果；AI以两种模式运行，同步检测到人脸点再去渲染；异步检测人脸点石渲染上一帧。。。
 6. 相机基本展示，接入AI滤镜链
+7. PyTorch模型接入测试，官网的segment.pt模型（超过100M无法上传，可以到官网下载，放到文件夹 https://github.com/pytorch/ios-demo-app）
 
 ###效果图
 ![效果图](demo.gif)

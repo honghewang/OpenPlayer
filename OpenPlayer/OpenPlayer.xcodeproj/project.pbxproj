@@ -71,6 +71,11 @@
 		B950FDDF2BE9EACF000C45D0 /* OPDecoderTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B950FDDE2BE9EACF000C45D0 /* OPDecoderTestVC.m */; };
 		B950FDE42BE9EDE2000C45D0 /* OPDecoderView.mm in Sources */ = {isa = PBXBuildFile; fileRef = B950FDE32BE9EDE2000C45D0 /* OPDecoderView.mm */; };
 		B95DBC7C2C75D4AD0049544C /* face2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B95DBC7B2C75D4AD0049544C /* face2.jpeg */; };
+		B991E8802CEAD542002D405A /* OPPyTorchTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B991E87F2CEAD542002D405A /* OPPyTorchTestVC.m */; };
+		B991E8862CEB3588002D405A /* OPTorchModule.mm in Sources */ = {isa = PBXBuildFile; fileRef = B991E8852CEB3588002D405A /* OPTorchModule.mm */; };
+		B991E8882CEB4003002D405A /* segment.pt in Resources */ = {isa = PBXBuildFile; fileRef = B991E8832CEB3192002D405A /* segment.pt */; };
+		B991E88C2CEB6286002D405A /* deeplab.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B991E88B2CEB6286002D405A /* deeplab.jpg */; };
+		B991E88E2CEC3470002D405A /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B991E88D2CEC3470002D405A /* dog.jpg */; };
 		B9929AD32C4277B60004CF03 /* tomface.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B9929AD22C4277B60004CF03 /* tomface.jpg */; };
 		B9929AD52C43AB300004CF03 /* haarcascade_frontalface_default.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9929AD42C43AB2F0004CF03 /* haarcascade_frontalface_default.xml */; };
 		B9989DB72C4A1B8100B174C5 /* haarcascade_frontalface_alt.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9989DB62C4A1B8100B174C5 /* haarcascade_frontalface_alt.xml */; };
@@ -102,7 +107,7 @@
 		B9071DD52C3BDDBD007008F1 /* face.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = face.jpeg; sourceTree = "<group>"; };
 		B9071DD72C3BE7C0007008F1 /* OPCVUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OPCVUtils.cpp; sourceTree = "<group>"; };
 		B9071DD82C3BE7C0007008F1 /* OPCVUtils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OPCVUtils.hpp; sourceTree = "<group>"; };
-		B9071DDA2C3BFB77007008F1 /* shape_predictor_68_face_landmarks.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = shape_predictor_68_face_landmarks.dat; sourceTree = "<group>"; };
+		B9071DDA2C3BFB77007008F1 /* shape_predictor_68_face_landmarks.dat */ = {isa = PBXFileReference; explicitFileType = text.xml; path = shape_predictor_68_face_landmarks.dat; sourceTree = "<group>"; };
 		B9071DDE2C3C13B9007008F1 /* OPCVPredictor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OPCVPredictor.cpp; sourceTree = "<group>"; };
 		B9071DDF2C3C13B9007008F1 /* OPCVPredictor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OPCVPredictor.hpp; sourceTree = "<group>"; };
 		B9071DE62C3E4483007008F1 /* OPFilterProgram.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OPFilterProgram.cpp; sourceTree = "<group>"; };
@@ -393,6 +398,13 @@
 		B950FDE22BE9EDE2000C45D0 /* OPDecoderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPDecoderView.h; sourceTree = "<group>"; };
 		B950FDE32BE9EDE2000C45D0 /* OPDecoderView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OPDecoderView.mm; sourceTree = "<group>"; };
 		B95DBC7B2C75D4AD0049544C /* face2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = face2.jpeg; sourceTree = "<group>"; };
+		B991E87E2CEAD542002D405A /* OPPyTorchTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPPyTorchTestVC.h; sourceTree = "<group>"; };
+		B991E87F2CEAD542002D405A /* OPPyTorchTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPPyTorchTestVC.m; sourceTree = "<group>"; };
+		B991E8832CEB3192002D405A /* segment.pt */ = {isa = PBXFileReference; lastKnownFileType = file; path = segment.pt; sourceTree = "<group>"; };
+		B991E8842CEB3588002D405A /* OPTorchModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPTorchModule.h; sourceTree = "<group>"; };
+		B991E8852CEB3588002D405A /* OPTorchModule.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OPTorchModule.mm; sourceTree = "<group>"; };
+		B991E88B2CEB6286002D405A /* deeplab.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = deeplab.jpg; sourceTree = "<group>"; };
+		B991E88D2CEC3470002D405A /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog.jpg; sourceTree = "<group>"; };
 		B9929AD22C4277B60004CF03 /* tomface.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tomface.jpg; sourceTree = "<group>"; };
 		B9929AD42C43AB2F0004CF03 /* haarcascade_frontalface_default.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_default.xml; sourceTree = "<group>"; };
 		B9989DB62C4A1B8100B174C5 /* haarcascade_frontalface_alt.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt.xml; sourceTree = "<group>"; };
@@ -928,6 +940,7 @@
 		B950FDBB2BE9DB81000C45D0 /* OpenPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				B991E87D2CEAD195002D405A /* PyTorch */,
 				B91BB5662C80116200A2CE7B /* Camera */,
 				B920A5192C71DAFC005F4F9C /* Frameworks */,
 				B9E0A8DB2C625C9200DB2377 /* Filter */,
@@ -975,6 +988,20 @@
 				B931BA042BFB19FD000AAFAE /* OPAudioToolBoxPlayer.m */,
 			);
 			path = DecoderTest;
+			sourceTree = "<group>";
+		};
+		B991E87D2CEAD195002D405A /* PyTorch */ = {
+			isa = PBXGroup;
+			children = (
+				B991E88D2CEC3470002D405A /* dog.jpg */,
+				B991E88B2CEB6286002D405A /* deeplab.jpg */,
+				B991E8832CEB3192002D405A /* segment.pt */,
+				B991E87E2CEAD542002D405A /* OPPyTorchTestVC.h */,
+				B991E87F2CEAD542002D405A /* OPPyTorchTestVC.m */,
+				B991E8842CEB3588002D405A /* OPTorchModule.h */,
+				B991E8852CEB3588002D405A /* OPTorchModule.mm */,
+			);
+			path = PyTorch;
 			sourceTree = "<group>";
 		};
 		B9989DBA2C4A540E00B174C5 /* Utils */ = {
@@ -1092,7 +1119,9 @@
 				B931BAC52C121312000AAFAE /* SDL_config.h.in in Resources */,
 				B950FDC92BE9DB82000C45D0 /* Assets.xcassets in Resources */,
 				B950FDC72BE9DB81000C45D0 /* Main.storyboard in Resources */,
+				B991E8882CEB4003002D405A /* segment.pt in Resources */,
 				B9FFC9CF2BEB388E005EF81E /* test.mp4 in Resources */,
+				B991E88C2CEB6286002D405A /* deeplab.jpg in Resources */,
 				B9989DB92C4A1BCE00B174C5 /* haarcascade_frontalface_alt2.xml in Resources */,
 				B9071DD62C3BDDBD007008F1 /* face.jpeg in Resources */,
 				B9929AD52C43AB300004CF03 /* haarcascade_frontalface_default.xml in Resources */,
@@ -1101,6 +1130,7 @@
 				B91BB5612C7B9AD100A2CE7B /* shaderf.glsl in Resources */,
 				B91BB5622C7B9AD100A2CE7B /* shaderv.glsl in Resources */,
 				B9F001992C9BD2DF009BF7CA /* mmod_human_face_detector.dat in Resources */,
+				B991E88E2CEC3470002D405A /* dog.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1172,6 +1202,7 @@
 				B91BB5692C8011B600A2CE7B /* OPCameraViewController.mm in Sources */,
 				B9071DD92C3BE7C0007008F1 /* OPCVUtils.cpp in Sources */,
 				B931BAEB2C259E13000AAFAE /* OPAudioController.cpp in Sources */,
+				B991E8802CEAD542002D405A /* OPPyTorchTestVC.m in Sources */,
 				B9071DEE2C3E4573007008F1 /* OPFilterFrameBuffer.cpp in Sources */,
 				B94880922C7B01B600C86CB5 /* OPFilterFaceMaskFilter.cpp in Sources */,
 				B920A5262C75BC95005F4F9C /* OPFilterRenderContext.cpp in Sources */,
@@ -1183,6 +1214,7 @@
 				B931BAD62C1573BD000AAFAE /* OPPlayerContext.cpp in Sources */,
 				B931BADC2C16AA38000AAFAE /* OPFFmpegManager.cpp in Sources */,
 				B920A5182C71BD1B005F4F9C /* OPFilterProcess.cpp in Sources */,
+				B991E8862CEB3588002D405A /* OPTorchModule.mm in Sources */,
 				B9071DE02C3C13BA007008F1 /* OPCVPredictor.cpp in Sources */,
 				B91BB5652C7D760800A2CE7B /* OPFilterTextureFilter.cpp in Sources */,
 				B920A5102C70AC7D005F4F9C /* OPFilterGPUView.mm in Sources */,
@@ -1367,7 +1399,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1427,7 +1459,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
