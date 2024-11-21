@@ -9,5 +9,5 @@ target 'OpenPlayer' do
   pod 'Masonry', '1.1.0'
   pod 'OpenCV', '4.3.0'
   pod 'GPUImage', '0.1.7'
-  pod 'LibTorch', '~>1.11.0'
+  pod 'LibTorch', '2.1.0'
 end
