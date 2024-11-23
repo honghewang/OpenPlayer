@@ -6,7 +6,7 @@
 //
 
 #import "OPPyTorchTestVC.h"
-#import "OPTorchModule.h"
+#import "OPSegTorchModule.h"
 #import <Masonry/Masonry.h>
 
 @interface OPPyTorchTestVC ()
@@ -20,7 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
-    [self torchTest];
+    [self segTorchTest];
+//    [self animteTorchTest];
 }
 
 - (void)setupUI {
@@ -33,10 +34,19 @@
     }];
 }
 
-- (void)torchTest {
+- (void)segTorchTest {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"segment.pt" ofType:@""];
-    OPTorchModule *torchModule = [[OPTorchModule alloc] initWithFileAtPath:path];
+    OPSegTorchModule *torchModule = [[OPSegTorchModule alloc] initWithFileAtPath:path];
     NSString *imgPath = [[NSBundle mainBundle] pathForResource:@"deeplab" ofType:@"jpg"];
+    UIImage *img = [torchModule segmentImage:[UIImage imageWithContentsOfFile:imgPath]];
+    self.imgView.image = img;
+}
+
+
+- (void)animteTorchTest {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"model.pt" ofType:@""];
+    OPSegTorchModule *torchModule = [[OPSegTorchModule alloc] initWithFileAtPath:path];
+    NSString *imgPath = [[NSBundle mainBundle] pathForResource:@"dog" ofType:@"jpg"];
     UIImage *img = [torchModule segmentImage:[UIImage imageWithContentsOfFile:imgPath]];
     self.imgView.image = img;
 }

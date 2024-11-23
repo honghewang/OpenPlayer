@@ -1,20 +1,20 @@
 //
-//  OPTorchModule.m
+//  OPSegTorchModule.m
 //  OpenPlayer
 //
 //  Created by 王宏鹤 on 2024/11/18.
 //
 
-#import "OPTorchModule.h"
+#import "OPSegTorchModule.h"
 #import <LibTorch/LibTorch.h>
 
-@interface OPTorchModule() {
+@interface OPSegTorchModule() {
     torch::jit::script::Module _impl;
 }
 
 @end
 
-@implementation OPTorchModule
+@implementation OPSegTorchModule
 
 - (nullable instancetype)initWithFileAtPath:(NSString*)filePath {
     self = [super init];

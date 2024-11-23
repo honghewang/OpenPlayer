@@ -1,5 +1,5 @@
 //
-//  OPTorchModule.h
+//  OPSegTorchModule.h
 //  OpenPlayer
 //
 //  Created by 王宏鹤 on 2024/11/18.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OPTorchModule : NSObject
+@interface OPSegTorchModule : NSObject
 
 - (nullable instancetype)initWithFileAtPath:(NSString*)filePath;
 + (instancetype)new NS_UNAVAILABLE;
