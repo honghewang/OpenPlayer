@@ -2,7 +2,9 @@
 iOS音视频交流学习demo，包含C++播放器，人脸识别，滤镜链
 
 ###编译
-项目中人脸识别使用到dlib（19.24.4），解压到当前文件夹即可，dlib已经编译过了，这里只需要用到*.h路径
+项目中人脸识别使用到dlib（19.24.4），dlib文件夹解压到当前文件夹即可，dlib已经编译过了，这里只需要用到*.h路径
+dlib级动漫化模型源码地址：
+链接: https://pan.baidu.com/s/1MMAftkxrYHbcB2-XVu_UDw 提取码: wf74
 
 ###说明
 1. 基于FFmpeg的解码演示，音频帧由AudioToolBox处理，视频帧直接转成图片，在主线程中显示出来，没有同步；
@@ -11,8 +13,8 @@ iOS音视频交流学习demo，包含C++播放器，人脸识别，滤镜链
 4. OpenCV+dlib，68人脸点，dlib::get_frontal_face_detector模拟器运行很慢，使用了haarcascade_frontalface_alt检测人脸
 5. C++实现了滤镜链，参考GPUImage，并加入了AI能力（人脸点），可以实现Mask等效果；AI以两种模式运行，同步检测到人脸点再去渲染；异步检测人脸点石渲染上一帧。。。
 6. 相机基本展示，接入AI滤镜链
-7. PyTorch模型接入测试，官网的segment.pt模型（超过100M无法上传，可以到官网下载，放到文件夹 https://github.com/pytorch/ios-demo-app）
-
+7. PyTorch模型接入测试，官网的segment.pt模型，自己porty训练了动漫化gan（paddlepaddle的数据源和模型）文件位置放在百度网盘
+8. 
 ###效果图
 ![效果图](demo.gif)
 
