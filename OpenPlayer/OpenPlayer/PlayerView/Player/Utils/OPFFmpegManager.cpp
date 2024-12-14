@@ -20,7 +20,7 @@ std::once_flag g_ffmpeg;
 
 void initFFmpegUtils() {
     // 初始化网络
-    av_register_all();
+//    av_register_all();
     avformat_network_init();
 }
 

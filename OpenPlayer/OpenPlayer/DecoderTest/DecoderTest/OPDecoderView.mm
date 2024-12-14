@@ -71,7 +71,7 @@ extern "C" {
     }
 
     // 初始化网络
-    av_register_all();
+//    av_register_all();
 //    avformat_network_init();
     int ret;
     AVFormatContext *formatContext = NULL;

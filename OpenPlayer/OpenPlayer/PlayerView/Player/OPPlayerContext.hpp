@@ -16,6 +16,13 @@ class AVFormatContext;
 class AVPacket;
 class AVCodecContext;
 
+/// 音视频同步方式
+enum OPPlayerSyncType {
+    OPPlayerSyncTypeAudioMaster,  // 音频同步
+    OPPlayerSyncTypeVideoMaster,  // 视频同步
+    OPPlayerSyncTypeExternalClock // 外部时钟同步
+};
+
 enum OPPlayerState {
     OPPlayerStateUnknown = 0,
     OPPlayerStatePlaying,
@@ -58,6 +65,7 @@ public:
     
     std::atomic<OPPlayerState> state;
     std::atomic<OPQueueState> queueState;
+    std::atomic<OPPlayerSyncType> syncType;
     
     std::atomic<double> seekTime{-1.0};
     
