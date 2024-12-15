@@ -91,8 +91,8 @@ extern "C" {
     // 打印信息
     av_dump_format(formatContext, 0, filename, 0);
     
-    int videoStream = 0;
-    int audioStream = 1;
+    int videoStream = 1;
+    int audioStream = 0;
     // 获取音视频流信息
     for (int i = 0; i < formatContext->nb_streams; i++) {
         AVStream *avStream = formatContext->streams[i];
