@@ -72,7 +72,7 @@ extern "C" {
 
     // 初始化网络
 //    av_register_all();
-//    avformat_network_init();
+    avformat_network_init();
     int ret;
     AVFormatContext *formatContext = NULL;
 //    AVDictionary *opts = nullptr;
@@ -84,12 +84,12 @@ extern "C" {
         NSLog(@"无法打开文件:%d  %s",ret, av_err2str(ret));
         return;
     }
-    ret = avformat_find_stream_info(formatContext, NULL);
-    // 时长
-    long long totalMs = formatContext->duration * 1000 / AV_TIME_BASE;
-    printf("totalMs is %lld", totalMs);
-    // 打印信息
-    av_dump_format(formatContext, 0, filename, 0);
+//    ret = avformat_find_stream_info(formatContext, NULL);
+//    // 时长
+//    long long totalMs = formatContext->duration * 1000 / AV_TIME_BASE;
+//    printf("totalMs is %lld", totalMs);
+//    // 打印信息
+//    av_dump_format(formatContext, 0, filename, 0);
     
     int videoStream = 1;
     int audioStream = 0;

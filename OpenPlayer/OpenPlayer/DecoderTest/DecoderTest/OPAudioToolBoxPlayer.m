@@ -36,8 +36,8 @@
 
 - (instancetype)initWithType:(NSString *)audioType {
     if (self = [super init]) {
-        sysnLock = [[NSLock alloc]init];
-        //设置音频参数 具体的信息需要问后台
+        sysnLock = [[NSLock alloc] init];
+        //设置音频参数
         if ([audioType isEqualToString:@"8k"]) {
             _audioDescription.mSampleRate = SAMPLE_RATE_8K;
             temPaket = 1600;
@@ -161,26 +161,7 @@
     [self.dataArray addObjectsFromArray:dataArray];
     
     self.finished = endflag;
-    
-    // 更新音频数据的总长度
-    if (endflag) {
-        self.audioLength = self.dataArray.count *0.1;
-    }else {
-        self.audioLength = length*0.26;
-    }
-    
-    // 回调音频数据的buffer长度
-    if (self.delegate && [self.delegate respondsToSelector:@selector(updateBufferPositon:)]) {
-        if (endflag) {
-            [self.delegate updateBufferPositon:1.0];
-        }else {
-            float progress = self.dataArray.count *0.1/(length*0.26);
-            if (progress >= 1) {
-                progress = 1;
-            }
-            [self.delegate updateBufferPositon:progress];
-        }
-    }
+        
     // 中断后继续播放
     if (self.isPausePlayIfNeed) {
         [self startPlayNeedCallBack:NO];
@@ -200,11 +181,11 @@
 // 把数据按照指定的长度切割成指定的长度
 - (NSArray *)arrayWithPcmData:(NSData *)data {
     NSMutableArray *tempDataArray = [NSMutableArray array];
-    NSInteger count= data.length * 1.0 / temPaket + 0.5;
+    NSInteger count = data.length * 1.0 / temPaket + 0.5;
     for (int i = 0; i < count; i++) {
         NSData *subData ;
-        if (i ==count-1) {
-            subData  =[data subdataWithRange:NSMakeRange(i*temPaket, data.length-i*temPaket)];
+        if (i == count-1) {
+            subData  = [data subdataWithRange:NSMakeRange(i*temPaket, data.length-i*temPaket)];
         }else {
             subData  = [data subdataWithRange:NSMakeRange(i*temPaket, temPaket)];
         }
@@ -331,10 +312,6 @@ static void AudioPlayerAQInputCallback(void* inUserData,AudioQueueRef audioQueue
 }
 
 // MARK: - custom Accessor -
-
-- (NSInteger)currentPlayPosition {
-    return self.playPosition/10;
-}
 
 - (NSMutableArray *)dataArray {
     if (!_dataArray) {

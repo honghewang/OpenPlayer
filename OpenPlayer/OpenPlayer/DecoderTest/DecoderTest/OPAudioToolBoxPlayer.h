@@ -23,9 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 播放开始回调
 - (void)playResumeIfNeed;
 
-///更新buffer的位置回调
--  (void)updateBufferPositon:(float)bufferPosition;
-
 /// 播放错误的回调
 - (void)playerCallBackFaiure:(NSString *)errorStr;
 
@@ -33,12 +30,6 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface OPAudioToolBoxPlayer : NSObject
-
-/// 当前的播放进度
-@property(nonatomic,assign) NSInteger currentPlayPosition;
-
-/// 音频长度
-@property(nonatomic,assign) NSInteger audioLength;
 
 @property(nonatomic,weak) id<OPAudioToolBoxPlayerDelegate> delegate;
 /// 当前的播放状态
