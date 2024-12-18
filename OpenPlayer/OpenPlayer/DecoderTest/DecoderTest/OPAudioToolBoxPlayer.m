@@ -60,11 +60,6 @@
         // 使用player的内部线程播放 新建输出
         AudioQueueNewOutput(&_audioDescription, AudioPlayerAQInputCallback, (__bridge void * _Nullable)(self), nil, 0, 0, &audioQueue);
         
-        AVAudioSession *session = [AVAudioSession sharedInstance];
-//        [session setActive:YES error:nil];
-//        [session setCategory:AVAudioSessionCategoryPlayback error:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AVAudioSessionInterruptionNotification:) name:AVAudioSessionInterruptionNotification object:session];
-        
         // 设置音量
         AudioQueueSetParameter(audioQueue, kAudioQueueParam_Volume, 1.0);
         // 初始化需要的缓冲区
@@ -287,24 +282,7 @@ static void AudioPlayerAQInputCallback(void* inUserData,AudioQueueRef audioQueue
     audioQueue = nil;
     sysnLock = nil;
 }
-//MARK:----接收通知方法----------
-- (void)AVAudioSessionInterruptionNotification: (NSNotification *)notificaiton {
-//    NSLog(@"%@", notificaiton.userInfo);
-    
-    AVAudioSessionInterruptionType type = [notificaiton.userInfo[AVAudioSessionInterruptionTypeKey] intValue];
-    
-    static BOOL isLastPlayStatePlaying = NO;
-    if (type == AVAudioSessionInterruptionTypeBegan) {
-        if (self.isPlayerPlaying) {
-            isLastPlayStatePlaying = YES;
-        }else {
-            isLastPlayStatePlaying = NO;
-        }
-        
-    }else if (type == AVAudioSessionInterruptionTypeEnded && isLastPlayStatePlaying){
-        [self startPlayNeedCallBack:NO];
-    }
-}
+
 - (void)callBackPlayerFailureMessage:(NSString *)message {
     if (self.delegate && [self.delegate respondsToSelector:@selector(playerCallBackFaiure:)]) {
         [self.delegate playerCallBackFaiure:message];

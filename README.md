@@ -13,7 +13,7 @@ dlib级动漫化模型源码地址：
 4. OpenCV+dlib，68人脸点，dlib::get_frontal_face_detector模拟器运行很慢，使用了haarcascade_frontalface_alt检测人脸
 5. C++实现了滤镜链，参考GPUImage，并加入了AI能力（人脸点），可以实现Mask等效果；AI以两种模式运行，同步检测到人脸点再去渲染；异步检测人脸点石渲染上一帧。。。
 6. 相机基本展示，接入AI滤镜链
-7. PyTorch模型接入测试，官网的segment.pt模型，自己porty训练了动漫化gan（paddlepaddle的数据源和模型）文件位置放在百度网盘
+7. PyTorch模型接入测试，官网的segment.pt模型，自己使用PyTorch训练了动漫化gan（paddlepaddle的数据源和模型）文件位置放在百度网盘
 8. 
 ###效果图
 ![效果图](demo.gif)
