@@ -162,7 +162,7 @@ bool OPPlayer::prepare(std::string filename) {
     }
     // 设置回调
     context->formatContext->interrupt_callback.callback = interrupt_callback;
-    context->formatContext->opaque = context.get();
+    context->formatContext->interrupt_callback.opaque = context.get();
     // 在某些情况下，输入流可能缺少这些时间戳，或者时间戳可能不正确。通过设置 AVFMT_FLAG_GENPTS，FFmpeg 能够尝试自动修复这些问题
     context->formatContext->flags |= AVFMT_FLAG_GENPTS;
     // 这些信息不是音视频数据本身的一部分，但可能对解码、显示或其他处理步骤有用
