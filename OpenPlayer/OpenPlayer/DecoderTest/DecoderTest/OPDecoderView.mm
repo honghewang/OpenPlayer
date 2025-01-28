@@ -89,7 +89,7 @@ extern "C" {
 //    long long totalMs = formatContext->duration * 1000 / AV_TIME_BASE;
 //    printf("totalMs is %lld", totalMs);
 //    // 打印信息
-//    av_dump_format(formatContext, 0, filename, 0);
+    av_dump_format(formatContext, 0, filename, 0);
     
     int videoStream = 1;
     int audioStream = 0;

@@ -57,6 +57,9 @@ public:
     std::string url;
     AVFormatContext *formatContext = nullptr;
     
+    int seek_by_bytes = -1;
+    double max_frame_duration;      // maximum duration of a frame - above this, we consider the jump a timestamp discontinuity
+    
     int videoStream = 0;
     int audioStream = 1;
     

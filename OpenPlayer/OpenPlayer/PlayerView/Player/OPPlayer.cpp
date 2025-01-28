@@ -20,6 +20,11 @@ extern "C" {
 
 using namespace std;
 
+static int interrupt_callback(void *context) {
+    // TODO
+    return 0;
+}
+
 inline double r2d(AVRational r) {
     return r.den == 0 ? 0 : (double)r.num / r.den;
 }
@@ -155,13 +160,36 @@ bool OPPlayer::prepare(std::string filename) {
         printf("无法打开文件:%s, error is %s",fileUrl, av_err2str(ret));
         return false;
     }
+    // 设置回调
+    context->formatContext->interrupt_callback.callback = interrupt_callback;
+    context->formatContext->opaque = context.get();
+    // 在某些情况下，输入流可能缺少这些时间戳，或者时间戳可能不正确。通过设置 AVFMT_FLAG_GENPTS，FFmpeg 能够尝试自动修复这些问题
+    context->formatContext->flags |= AVFMT_FLAG_GENPTS;
+    // 这些信息不是音视频数据本身的一部分，但可能对解码、显示或其他处理步骤有用
+    av_format_inject_global_side_data(context->formatContext);
+    // 这里可以调用avformat_find_stream_info，设置一些配置，探测数据流相关一些探测流信息时所需的选项
+    
+    if (context->formatContext->pb) {
+        // 是否为文件结尾为0
+        context->formatContext->pb->eof_reached = 0;
+    }
+    
+    // 这里判断是否是ogg格式
+    if (context->seek_by_bytes < 0) {
+        context->seek_by_bytes = !!(context->formatContext->iformat->flags & AVFMT_TS_DISCONT) && strcmp("ogg", context->formatContext->iformat->name);
+    }
+    context->max_frame_duration = (context->formatContext->iformat->flags & AVFMT_TS_DISCONT) ? 10.0 : 3600.0;
+        
     //  获取Stream
+    // av_guess_sample_aspect_ratio 猜测视频宽高比
     context->videoStream = av_find_best_stream(context->formatContext, AVMEDIA_TYPE_VIDEO, -1, -1, NULL, 0);
     AVStream *vStream = context->formatContext->streams[context->videoStream];
     context->vTimeRation = r2d(vStream->time_base);
     context->audioStream = av_find_best_stream(context->formatContext, AVMEDIA_TYPE_AUDIO, -1, -1, NULL, 0);
     AVStream *aStream = context->formatContext->streams[context->audioStream];
     context->aTimeRation = r2d(aStream->time_base);
+    
+    // 此处判断模式
     
     // 准备读取
     context->serial++;
