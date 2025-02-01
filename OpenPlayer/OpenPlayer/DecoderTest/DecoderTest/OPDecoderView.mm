@@ -115,7 +115,7 @@ extern "C" {
     }
     AVCodecContext *vCodecContext = avcodec_alloc_context3(vcodec);
     avcodec_parameters_to_context(vCodecContext, formatContext->streams[videoStream]->codecpar);
-//    vCodecContext->thread_count = 8;
+    //    vCodecContext->thread_count = 8;
     ret = avcodec_open2(vCodecContext, nullptr, nullptr);
     if (ret != 0) {
         NSLog(@"解码器无法打开视频");

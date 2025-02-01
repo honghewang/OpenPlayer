@@ -156,7 +156,7 @@ void OPStreamOperation::readStream(std::weak_ptr<OPStreamOperation> weak_Stream)
     }
     AVCodecContext *vCodecContext = avcodec_alloc_context3(vcodec);
     avcodec_parameters_to_context(vCodecContext, context->formatContext->streams[context->videoStream]->codecpar);
-    int ret = avcodec_open2(vCodecContext, nullptr, nullptr);
+    int ret = avcodec_open2(vCodecContext, vcodec, nullptr);
     if (ret != 0) {
         return;
     }
@@ -166,14 +166,14 @@ void OPStreamOperation::readStream(std::weak_ptr<OPStreamOperation> weak_Stream)
     }
     videoFrameThread = std::thread(prepareReadFrame, weak_Stream, AVMEDIA_TYPE_VIDEO);
     videoFrameThread.detach();
-    
+        
     const AVCodec *acodec = avcodec_find_decoder(context->formatContext->streams[context->audioStream]->codecpar->codec_id);
     if (!acodec) {
         return;
     }
     AVCodecContext *aCodecContext = avcodec_alloc_context3(acodec);
     avcodec_parameters_to_context(aCodecContext, context->formatContext->streams[context->audioStream]->codecpar);
-    int aRet = avcodec_open2(aCodecContext, nullptr, nullptr);
+    int aRet = avcodec_open2(aCodecContext, acodec, nullptr);
     if (aRet != 0) {
         return;
     }
