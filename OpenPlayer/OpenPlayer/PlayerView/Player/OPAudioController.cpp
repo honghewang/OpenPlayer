@@ -6,8 +6,7 @@
 //
 
 #include "OPAudioController.hpp"
-#include <SDL_audio.h>
-#include <SDL_main.h>
+#include <SDL2/SDL_audio.h>
 #include <vector>
 #include "OPStreamOperation.hpp"
 #include "OPPlayer.hpp"
@@ -36,7 +35,6 @@ int OPAudioController::play(AVCodecContext *avctx, OPPlayer *opaque) {
     int wanted_nb_channels    = avctx->channels;
     int64_t wanted_channel_layout = avctx->channel_layout;
     
-    SDL_SetMainReady();
     SDL_AudioSpec wanted_spec, spec;
     
     const char *env;

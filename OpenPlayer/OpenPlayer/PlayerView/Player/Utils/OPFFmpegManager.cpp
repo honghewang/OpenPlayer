@@ -8,6 +8,8 @@
 #include "OPFFmpegManager.hpp"
 #include <thread>
 #include <iostream>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_main.h>
 
 extern "C" {
 #include <libavformat/avformat.h>
@@ -22,6 +24,7 @@ void initFFmpegUtils() {
     // 初始化网络
 //    av_register_all();
     avformat_network_init();
+    SDL_SetMainReady();
 }
 
 
