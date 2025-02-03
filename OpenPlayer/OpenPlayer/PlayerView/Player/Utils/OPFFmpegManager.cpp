@@ -25,6 +25,11 @@ void initFFmpegUtils() {
 //    av_register_all();
     avformat_network_init();
     SDL_SetMainReady();
+    // 初始化 SDL
+    if (SDL_Init(SDL_INIT_AUDIO) < 0) {
+        fprintf(stderr, "SDL could not initialize: %s\n", SDL_GetError());
+    }
+//    SDL_Quit();
 }
 
 
