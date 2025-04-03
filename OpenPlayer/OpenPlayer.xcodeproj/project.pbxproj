@@ -68,6 +68,9 @@
 		B950FDDF2BE9EACF000C45D0 /* OPDecoderTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B950FDDE2BE9EACF000C45D0 /* OPDecoderTestVC.m */; };
 		B950FDE42BE9EDE2000C45D0 /* OPDecoderView.mm in Sources */ = {isa = PBXBuildFile; fileRef = B950FDE32BE9EDE2000C45D0 /* OPDecoderView.mm */; };
 		B95DBC7C2C75D4AD0049544C /* face2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B95DBC7B2C75D4AD0049544C /* face2.jpeg */; };
+		B96CA1282D9D05250097130C /* OPOpenCVTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B96CA1272D9D05250097130C /* OPOpenCVTableVC.m */; };
+		B96CA12C2D9E3C6E0097130C /* OPCVEffectBaseVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B96CA12B2D9E3C6E0097130C /* OPCVEffectBaseVC.mm */; };
+		B96CA1322D9E7E130097130C /* OPCVEffectROIVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B96CA1312D9E7E130097130C /* OPCVEffectROIVC.mm */; };
 		B991E8802CEAD542002D405A /* OPPyTorchTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B991E87F2CEAD542002D405A /* OPPyTorchTestVC.m */; };
 		B991E8862CEB3588002D405A /* OPSegTorchModule.mm in Sources */ = {isa = PBXBuildFile; fileRef = B991E8852CEB3588002D405A /* OPSegTorchModule.mm */; };
 		B991E8882CEB4003002D405A /* segment.pt in Resources */ = {isa = PBXBuildFile; fileRef = B991E8832CEB3192002D405A /* segment.pt */; };
@@ -309,6 +312,12 @@
 		B950FDE22BE9EDE2000C45D0 /* OPDecoderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPDecoderView.h; sourceTree = "<group>"; };
 		B950FDE32BE9EDE2000C45D0 /* OPDecoderView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OPDecoderView.mm; sourceTree = "<group>"; };
 		B95DBC7B2C75D4AD0049544C /* face2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = face2.jpeg; sourceTree = "<group>"; };
+		B96CA1262D9D05250097130C /* OPOpenCVTableVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPOpenCVTableVC.h; sourceTree = "<group>"; };
+		B96CA1272D9D05250097130C /* OPOpenCVTableVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPOpenCVTableVC.m; sourceTree = "<group>"; };
+		B96CA12A2D9E3C6E0097130C /* OPCVEffectBaseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPCVEffectBaseVC.h; sourceTree = "<group>"; };
+		B96CA12B2D9E3C6E0097130C /* OPCVEffectBaseVC.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OPCVEffectBaseVC.mm; sourceTree = "<group>"; };
+		B96CA1302D9E7E130097130C /* OPCVEffectROIVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPCVEffectROIVC.h; sourceTree = "<group>"; };
+		B96CA1312D9E7E130097130C /* OPCVEffectROIVC.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OPCVEffectROIVC.mm; sourceTree = "<group>"; };
 		B991E87E2CEAD542002D405A /* OPPyTorchTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPPyTorchTestVC.h; sourceTree = "<group>"; };
 		B991E87F2CEAD542002D405A /* OPPyTorchTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPPyTorchTestVC.m; sourceTree = "<group>"; };
 		B991E8832CEB3192002D405A /* segment.pt */ = {isa = PBXFileReference; lastKnownFileType = file; path = segment.pt; sourceTree = "<group>"; };
@@ -790,6 +799,17 @@
 			path = DecoderTest;
 			sourceTree = "<group>";
 		};
+		B96CA1292D9E3B260097130C /* OpenCVTest */ = {
+			isa = PBXGroup;
+			children = (
+				B96CA12A2D9E3C6E0097130C /* OPCVEffectBaseVC.h */,
+				B96CA12B2D9E3C6E0097130C /* OPCVEffectBaseVC.mm */,
+				B96CA1302D9E7E130097130C /* OPCVEffectROIVC.h */,
+				B96CA1312D9E7E130097130C /* OPCVEffectROIVC.mm */,
+			);
+			path = OpenCVTest;
+			sourceTree = "<group>";
+		};
 		B991E87D2CEAD195002D405A /* PyTorch */ = {
 			isa = PBXGroup;
 			children = (
@@ -829,11 +849,14 @@
 		B9DA1B7C2C3A62E400BEEF29 /* OpenCV */ = {
 			isa = PBXGroup;
 			children = (
+				B96CA1292D9E3B260097130C /* OpenCVTest */,
 				B9989DBA2C4A540E00B174C5 /* Utils */,
 				B9071DCE2C3A6784007008F1 /* OPOpenCVTestVC.h */,
 				B9071DCF2C3A6784007008F1 /* OPOpenCVTestVC.mm */,
 				B91BB5542C7B94C500A2CE7B /* OPFaceImageFilter.h */,
 				B91BB5532C7B94C500A2CE7B /* OPFaceImageFilter.mm */,
+				B96CA1262D9D05250097130C /* OPOpenCVTableVC.h */,
+				B96CA1272D9D05250097130C /* OPOpenCVTableVC.m */,
 			);
 			path = OpenCV;
 			sourceTree = "<group>";
@@ -990,6 +1013,7 @@
 				B91BB55E2C7B9AC600A2CE7B /* OPPlayerLayer.m in Sources */,
 				B920A5142C71A851005F4F9C /* OPFilterAICenter.cpp in Sources */,
 				B948808F2C7ADEDE00C86CB5 /* OPFilterShowingFilter.cpp in Sources */,
+				B96CA12C2D9E3C6E0097130C /* OPCVEffectBaseVC.mm in Sources */,
 				B9071DEB2C3E44AA007008F1 /* OPFilterProgramManager.cpp in Sources */,
 				B9F001912C96EAA4009BF7CA /* OPFilterInputMat.cpp in Sources */,
 				B931BAD92C1576C4000AAFAE /* OPPlayer.cpp in Sources */,
@@ -1015,6 +1039,8 @@
 				B991E8862CEB3588002D405A /* OPSegTorchModule.mm in Sources */,
 				B9071DE02C3C13BA007008F1 /* OPCVPredictor.cpp in Sources */,
 				B91BB5652C7D760800A2CE7B /* OPFilterTextureFilter.cpp in Sources */,
+				B96CA1322D9E7E130097130C /* OPCVEffectROIVC.mm in Sources */,
+				B96CA1282D9D05250097130C /* OPOpenCVTableVC.m in Sources */,
 				B920A5102C70AC7D005F4F9C /* OPFilterGPUView.mm in Sources */,
 				B91BB5552C7B94C500A2CE7B /* OPFaceImageFilter.mm in Sources */,
 				B9DA1A0A2C2C16A700BEEF29 /* OPVideoController.cpp in Sources */,

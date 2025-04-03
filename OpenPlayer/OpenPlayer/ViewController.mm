@@ -15,6 +15,7 @@
 #include "OPCVUtils.hpp"
 #import "OPCameraViewController.h"
 #import "OPPyTorchTestVC.h"
+#import "OPOpenCVTableVC.h"
 
 @interface OPVCModel : NSObject
 
@@ -82,8 +83,8 @@
     model3.cls = OPFilterGPUImageTest.class;
     
     OPVCModel *model4 = [[OPVCModel alloc] init];
-    model4.title = @"人脸点：OpenCV+GPUImage";
-    model4.cls = OPOpenCVTestVC.class;
+    model4.title = @"OpenCV测试";
+    model4.cls = OPOpenCVTableVC.class;
     
     OPVCModel *model5 = [[OPVCModel alloc] init];
     model5.title = @"滤镜测试：AI同步/异步";

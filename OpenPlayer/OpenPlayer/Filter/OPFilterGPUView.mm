@@ -163,7 +163,7 @@ NSString *const OPFilterRefreshNotification = @"OPFilterRefreshNotification";
     glDrawArrays(GL_TRIANGLES, 0, 6);
     
     //13.从渲染缓存区显示到屏幕上
-    glBindRenderbuffer(GL_RENDERBUFFER, self.colorRenderBuffer);
+//    glBindRenderbuffer(GL_RENDERBUFFER, self.colorRenderBuffer);
     [self.context presentRenderbuffer:GL_RENDERBUFFER];
 }
 

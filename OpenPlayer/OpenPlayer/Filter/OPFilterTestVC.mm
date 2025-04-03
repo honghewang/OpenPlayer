@@ -39,7 +39,7 @@
 - (void)setupUI {
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.gpuView = [[OPFilterGPUView alloc] initWithAsyn:NO];
+    self.gpuView = [[OPFilterGPUView alloc] initWithAsyn:false];
     [self.view addSubview:self.gpuView];
     CGFloat screenWidth = UIScreen.mainScreen.bounds.size.width;
     [self.gpuView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -55,9 +55,6 @@
     /// 这里可以配置滤镜
     pointsFilter->addTarget(grayFilter);
     grayFilter->addTarget(maskFilter);
-    
-//    pointsFilter->addTarget(maskFilter);
-    
     maskLink->input = pointsFilter;
     maskLink->output = maskFilter;
     [self.gpuView setFilterLinks:maskLink];
