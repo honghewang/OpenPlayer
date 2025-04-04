@@ -24,7 +24,6 @@
 
 @interface OPCVEffectBaseVC ()
 
-@property (nonatomic, strong) UIImageView *imageView;
 
 @end
 
@@ -42,10 +41,14 @@
     }];
     __weak OPCVEffectBaseVC *weakSelf = self;
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSString *imgPath = [[NSBundle mainBundle] pathForResource:@"dog" ofType:@"jpg"];
-        cv::Mat mat = cv::imread([imgPath UTF8String]);
-        [weakSelf displayCVMat:[self effect:mat]];
+        cv::Mat mat = cv::imread([[weakSelf imgPath] UTF8String]);
+        [weakSelf displayCVMat:[weakSelf effect:mat]];
     });
+}
+
+- (NSString *)imgPath {
+    NSString *imgPath = [[NSBundle mainBundle] pathForResource:@"dog" ofType:@"jpg"];
+    return imgPath;
 }
 
 - (cv::Mat)effect:(cv::Mat&)mat {

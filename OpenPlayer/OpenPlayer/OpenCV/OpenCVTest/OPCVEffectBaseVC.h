@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 // override
 //- (cv::Mat)effect:(cv::Mat&)mat;
 
+@property (nonatomic, strong) UIImageView *imageView;
+
+- (NSString *)imgPath;
+
 @end
 
 NS_ASSUME_NONNULL_END

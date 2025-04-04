@@ -10,6 +10,8 @@
 #include "OPCVUtils.hpp"
 #import <GPUImage/GPUImage.h>
 #import "OPFaceImageFilter.h"
+#import "OPCVEffectErodeVC.h"
+
 
 @interface OPOpenCVTestVC ()
 
