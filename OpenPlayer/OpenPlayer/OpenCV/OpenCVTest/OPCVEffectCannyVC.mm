@@ -43,7 +43,7 @@
     cv::GaussianBlur(gray, blurred, cv::Size(5,5), 0);
     
     // Canny边缘检测
-    cv::Canny(blurred, edges, 100, 200);
+    cv::Canny(blurred, edges, 80, 150);
     
     return edges;
 }

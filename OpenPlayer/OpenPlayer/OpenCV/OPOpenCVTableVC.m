@@ -23,6 +23,7 @@
 #import "OPCVEffectGradientVC.h"
 #import "OPCVEffectTophatVC.h"
 #import "OPCVEffectBlackhatVC.h"
+#import "OPCVEffectSobelVC.h"
 
 @interface OPOpenCVModel : NSObject
 
@@ -133,11 +134,15 @@
     model13.cls = OPCVEffectBlackhatVC.class;
     
     
-    OPOpenCVModel *model100 = [[OPOpenCVModel alloc] init];
-    model100.title = @"Canny效果";
-    model100.cls = OPCVEffectCannyVC.class;
+    OPOpenCVModel *model14 = [[OPOpenCVModel alloc] init];
+    model14.title = @"Sobel梯度";
+    model14.cls = OPCVEffectSobelVC.class;
     
-    return @[model1, model2, model3, model4, model5, model6, model7, model8, model9, model10, model11, model12, model13, model100];
+    OPOpenCVModel *model15 = [[OPOpenCVModel alloc] init];
+    model15.title = @"Canny效果";
+    model15.cls = OPCVEffectCannyVC.class;
+    
+    return @[model1, model2, model3, model4, model5, model6, model7, model8, model9, model10, model11, model12, model13, model14, model15];
 }
 
 @end

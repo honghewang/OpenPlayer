@@ -93,6 +93,7 @@
 		B9A7F1602DA024B9009D3CB3 /* OPCVEffectGradientVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B9A7F15F2DA024B9009D3CB3 /* OPCVEffectGradientVC.mm */; };
 		B9A7F1642DA02B46009D3CB3 /* OPCVEffectTophatVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B9A7F1632DA02B46009D3CB3 /* OPCVEffectTophatVC.mm */; };
 		B9A7F1672DA02BB8009D3CB3 /* OPCVEffectBlackhatVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B9A7F1662DA02BB8009D3CB3 /* OPCVEffectBlackhatVC.mm */; };
+		B9A7F16A2DA0D72C009D3CB3 /* OPCVEffectSobelVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B9A7F1692DA0D72B009D3CB3 /* OPCVEffectSobelVC.mm */; };
 		B9DA1A072C2BDB8F00BEEF29 /* OPPtrManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9DA1A052C2BDB8F00BEEF29 /* OPPtrManager.cpp */; };
 		B9DA1A0A2C2C16A700BEEF29 /* OPVideoController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9DA1A082C2C16A700BEEF29 /* OPVideoController.cpp */; };
 		B9E311EF2C81BEFC0031A5B7 /* OPCaptureSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E311EE2C81BEFC0031A5B7 /* OPCaptureSystem.m */; };
@@ -367,6 +368,8 @@
 		B9A7F1632DA02B46009D3CB3 /* OPCVEffectTophatVC.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OPCVEffectTophatVC.mm; sourceTree = "<group>"; };
 		B9A7F1652DA02BB8009D3CB3 /* OPCVEffectBlackhatVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPCVEffectBlackhatVC.h; sourceTree = "<group>"; };
 		B9A7F1662DA02BB8009D3CB3 /* OPCVEffectBlackhatVC.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OPCVEffectBlackhatVC.mm; sourceTree = "<group>"; };
+		B9A7F1682DA0D72B009D3CB3 /* OPCVEffectSobelVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPCVEffectSobelVC.h; sourceTree = "<group>"; };
+		B9A7F1692DA0D72B009D3CB3 /* OPCVEffectSobelVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OPCVEffectSobelVC.mm; sourceTree = "<group>"; };
 		B9DA1A052C2BDB8F00BEEF29 /* OPPtrManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OPPtrManager.cpp; sourceTree = "<group>"; };
 		B9DA1A062C2BDB8F00BEEF29 /* OPPtrManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OPPtrManager.hpp; sourceTree = "<group>"; };
 		B9DA1A082C2C16A700BEEF29 /* OPVideoController.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OPVideoController.cpp; sourceTree = "<group>"; };
@@ -840,6 +843,8 @@
 		B96CA1292D9E3B260097130C /* OpenCVTest */ = {
 			isa = PBXGroup;
 			children = (
+				B9A7F1682DA0D72B009D3CB3 /* OPCVEffectSobelVC.h */,
+				B9A7F1692DA0D72B009D3CB3 /* OPCVEffectSobelVC.mm */,
 				B9A7F1532D9FE1DB009D3CB3 /* burr.jpg */,
 				B96CA12A2D9E3C6E0097130C /* OPCVEffectBaseVC.h */,
 				B96CA12B2D9E3C6E0097130C /* OPCVEffectBaseVC.mm */,
@@ -1115,6 +1120,7 @@
 				B9A7F1642DA02B46009D3CB3 /* OPCVEffectTophatVC.mm in Sources */,
 				B920A5102C70AC7D005F4F9C /* OPFilterGPUView.mm in Sources */,
 				B91BB5552C7B94C500A2CE7B /* OPFaceImageFilter.mm in Sources */,
+				B9A7F16A2DA0D72C009D3CB3 /* OPCVEffectSobelVC.mm in Sources */,
 				B9A7F1422D9FBCD6009D3CB3 /* OPCVEffectChannelVC.mm in Sources */,
 				B9DA1A0A2C2C16A700BEEF29 /* OPVideoController.cpp in Sources */,
 				B94880892C7AB00700C86CB5 /* OPFilterAIInfo.cpp in Sources */,
