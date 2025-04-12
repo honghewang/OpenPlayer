@@ -24,6 +24,7 @@
 #import "OPCVEffectTophatVC.h"
 #import "OPCVEffectBlackhatVC.h"
 #import "OPCVEffectSobelVC.h"
+#import "OPCVEffectHoughLinesVC.h"
 
 @interface OPOpenCVModel : NSObject
 
@@ -142,7 +143,11 @@
     model15.title = @"Canny效果";
     model15.cls = OPCVEffectCannyVC.class;
     
-    return @[model1, model2, model3, model4, model5, model6, model7, model8, model9, model10, model11, model12, model13, model14, model15];
+    OPOpenCVModel *model16 = [[OPOpenCVModel alloc] init];
+    model16.title = @"HoughLines直线检测";
+    model16.cls = OPCVEffectHoughLinesVC.class;
+    
+    return @[model1, model2, model3, model4, model5, model6, model7, model8, model9, model10, model11, model12, model13, model14, model15, model16];
 }
 
 @end

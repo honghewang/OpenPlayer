@@ -20,10 +20,17 @@
 @implementation OPCVEffectChannelVC
 
 - (cv::Mat)effect:(cv::Mat&)mat {
+    
     std::vector<cv::Mat> channels;
-    cv::split(mat, channels);    
-    // 返回红色通道（BGR格式的第三个通道）
-    return channels[2];
+    cv::split(mat, channels);
+    
+    // 创建零矩阵并合并三通道
+    cv::Mat zeroMat = cv::Mat::zeros(mat.size(), CV_8UC1);
+    std::vector<cv::Mat> mergedChannels{zeroMat, zeroMat, channels[2]};
+    cv::Mat des;
+    cv::merge(mergedChannels, des);
+    
+    return des;
 }
 
 

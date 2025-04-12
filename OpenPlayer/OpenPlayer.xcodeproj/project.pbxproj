@@ -94,6 +94,8 @@
 		B9A7F1642DA02B46009D3CB3 /* OPCVEffectTophatVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B9A7F1632DA02B46009D3CB3 /* OPCVEffectTophatVC.mm */; };
 		B9A7F1672DA02BB8009D3CB3 /* OPCVEffectBlackhatVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B9A7F1662DA02BB8009D3CB3 /* OPCVEffectBlackhatVC.mm */; };
 		B9A7F16A2DA0D72C009D3CB3 /* OPCVEffectSobelVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B9A7F1692DA0D72B009D3CB3 /* OPCVEffectSobelVC.mm */; };
+		B9A7F1702DA4C7DC009D3CB3 /* OPCVEffectHoughLinesVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B9A7F16F2DA4C7DB009D3CB3 /* OPCVEffectHoughLinesVC.mm */; };
+		B9A7F1742DA4EC72009D3CB3 /* longzi.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B9A7F1732DA4EC72009D3CB3 /* longzi.jpg */; };
 		B9DA1A072C2BDB8F00BEEF29 /* OPPtrManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9DA1A052C2BDB8F00BEEF29 /* OPPtrManager.cpp */; };
 		B9DA1A0A2C2C16A700BEEF29 /* OPVideoController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9DA1A082C2C16A700BEEF29 /* OPVideoController.cpp */; };
 		B9E311EF2C81BEFC0031A5B7 /* OPCaptureSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E311EE2C81BEFC0031A5B7 /* OPCaptureSystem.m */; };
@@ -370,6 +372,9 @@
 		B9A7F1662DA02BB8009D3CB3 /* OPCVEffectBlackhatVC.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OPCVEffectBlackhatVC.mm; sourceTree = "<group>"; };
 		B9A7F1682DA0D72B009D3CB3 /* OPCVEffectSobelVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPCVEffectSobelVC.h; sourceTree = "<group>"; };
 		B9A7F1692DA0D72B009D3CB3 /* OPCVEffectSobelVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OPCVEffectSobelVC.mm; sourceTree = "<group>"; };
+		B9A7F16E2DA4C7DB009D3CB3 /* OPCVEffectHoughLinesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPCVEffectHoughLinesVC.h; sourceTree = "<group>"; };
+		B9A7F16F2DA4C7DB009D3CB3 /* OPCVEffectHoughLinesVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OPCVEffectHoughLinesVC.mm; sourceTree = "<group>"; };
+		B9A7F1732DA4EC72009D3CB3 /* longzi.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = longzi.jpg; sourceTree = "<group>"; };
 		B9DA1A052C2BDB8F00BEEF29 /* OPPtrManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OPPtrManager.cpp; sourceTree = "<group>"; };
 		B9DA1A062C2BDB8F00BEEF29 /* OPPtrManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OPPtrManager.hpp; sourceTree = "<group>"; };
 		B9DA1A082C2C16A700BEEF29 /* OPVideoController.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OPVideoController.cpp; sourceTree = "<group>"; };
@@ -843,6 +848,7 @@
 		B96CA1292D9E3B260097130C /* OpenCVTest */ = {
 			isa = PBXGroup;
 			children = (
+				B9A7F1732DA4EC72009D3CB3 /* longzi.jpg */,
 				B9A7F1682DA0D72B009D3CB3 /* OPCVEffectSobelVC.h */,
 				B9A7F1692DA0D72B009D3CB3 /* OPCVEffectSobelVC.mm */,
 				B9A7F1532D9FE1DB009D3CB3 /* burr.jpg */,
@@ -874,6 +880,8 @@
 				B9A7F1632DA02B46009D3CB3 /* OPCVEffectTophatVC.mm */,
 				B9A7F1652DA02BB8009D3CB3 /* OPCVEffectBlackhatVC.h */,
 				B9A7F1662DA02BB8009D3CB3 /* OPCVEffectBlackhatVC.mm */,
+				B9A7F16E2DA4C7DB009D3CB3 /* OPCVEffectHoughLinesVC.h */,
+				B9A7F16F2DA4C7DB009D3CB3 /* OPCVEffectHoughLinesVC.mm */,
 			);
 			path = OpenCVTest;
 			sourceTree = "<group>";
@@ -1018,6 +1026,7 @@
 				B9989DB72C4A1B8100B174C5 /* haarcascade_frontalface_alt.xml in Resources */,
 				B9071DE12C3C230E007008F1 /* shape_predictor_68_face_landmarks.dat in Resources */,
 				B91BB5612C7B9AD100A2CE7B /* shaderf.glsl in Resources */,
+				B9A7F1742DA4EC72009D3CB3 /* longzi.jpg in Resources */,
 				B91BB5622C7B9AD100A2CE7B /* shaderv.glsl in Resources */,
 				B9F001992C9BD2DF009BF7CA /* mmod_human_face_detector.dat in Resources */,
 				B991E88E2CEC3470002D405A /* dog.jpg in Resources */,
@@ -1133,6 +1142,7 @@
 				B9A7F14F2D9FCC97009D3CB3 /* OPCVEffectFilterVC.mm in Sources */,
 				B950FDD82BE9E605000C45D0 /* TableViewCell.m in Sources */,
 				B9F0018E2C949A7A009BF7CA /* OPCapturePreview.mm in Sources */,
+				B9A7F1702DA4C7DC009D3CB3 /* OPCVEffectHoughLinesVC.mm in Sources */,
 				B920A5072C6DE7A6005F4F9C /* OPFilterTestVC.mm in Sources */,
 				B931BA052BFB19FD000AAFAE /* OPAudioToolBoxPlayer.m in Sources */,
 				B931BA6B2C10CF52000AAFAE /* OPPlayerView.mm in Sources */,
