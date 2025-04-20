@@ -17,10 +17,13 @@
 }
 
 - (cv::Mat)effect:(cv::Mat&)mat {
-    cv::Mat dilated;
+//    cv::Mat dilated;
+//    cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3,3));
+//    cv::dilate(mat, dilated, kernel);
+//    return dilated;
     cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3,3));
-    cv::dilate(mat, dilated, kernel);
-    return dilated;
+    cv::morphologyEx(mat, mat, cv::MORPH_DILATE, kernel);
+    return mat;
 }
 
 @end

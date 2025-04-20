@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		312E29F9DE3D170979E31216 /* libPods-OpenPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77DDC4BA3DEAA7999B803C90 /* libPods-OpenPlayer.a */; };
+		B90133AC2DB4BC9700FA493E /* OPCVEffectHighpassVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B90133AB2DB4BC9700FA493E /* OPCVEffectHighpassVC.mm */; };
+		B90133B22DB4F4C000FA493E /* OPCVEffectLowpassVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B90133B12DB4F4C000FA493E /* OPCVEffectLowpassVC.mm */; };
 		B9071DD02C3A6784007008F1 /* OPOpenCVTestVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B9071DCF2C3A6784007008F1 /* OPOpenCVTestVC.mm */; };
 		B9071DD42C3BD6CC007008F1 /* libdlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9071DD32C3BD6CC007008F1 /* libdlib.a */; };
 		B9071DD62C3BDDBD007008F1 /* face.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B9071DD52C3BDDBD007008F1 /* face.jpeg */; };
@@ -116,6 +118,10 @@
 		188FB4CCAC5718AD5A51E4B5 /* Pods-OverallPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OverallPlayer.debug.xcconfig"; path = "Target Support Files/Pods-OverallPlayer/Pods-OverallPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		52C3F5A6602FDD55B4E69F4B /* Pods-OverallPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OverallPlayer.release.xcconfig"; path = "Target Support Files/Pods-OverallPlayer/Pods-OverallPlayer.release.xcconfig"; sourceTree = "<group>"; };
 		77DDC4BA3DEAA7999B803C90 /* libPods-OpenPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpenPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B90133AB2DB4BC9700FA493E /* OPCVEffectHighpassVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OPCVEffectHighpassVC.mm; sourceTree = "<group>"; };
+		B90133AD2DB4BCB300FA493E /* OPCVEffectHighpassVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPCVEffectHighpassVC.h; sourceTree = "<group>"; };
+		B90133B02DB4F4C000FA493E /* OPCVEffectLowpassVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPCVEffectLowpassVC.h; sourceTree = "<group>"; };
+		B90133B12DB4F4C000FA493E /* OPCVEffectLowpassVC.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OPCVEffectLowpassVC.mm; sourceTree = "<group>"; };
 		B9071DCE2C3A6784007008F1 /* OPOpenCVTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPOpenCVTestVC.h; sourceTree = "<group>"; };
 		B9071DCF2C3A6784007008F1 /* OPOpenCVTestVC.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OPOpenCVTestVC.mm; sourceTree = "<group>"; };
 		B9071DD32C3BD6CC007008F1 /* libdlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libdlib.a; sourceTree = "<group>"; };
@@ -882,6 +888,10 @@
 				B9A7F1662DA02BB8009D3CB3 /* OPCVEffectBlackhatVC.mm */,
 				B9A7F16E2DA4C7DB009D3CB3 /* OPCVEffectHoughLinesVC.h */,
 				B9A7F16F2DA4C7DB009D3CB3 /* OPCVEffectHoughLinesVC.mm */,
+				B90133AD2DB4BCB300FA493E /* OPCVEffectHighpassVC.h */,
+				B90133AB2DB4BC9700FA493E /* OPCVEffectHighpassVC.mm */,
+				B90133B02DB4F4C000FA493E /* OPCVEffectLowpassVC.h */,
+				B90133B12DB4F4C000FA493E /* OPCVEffectLowpassVC.mm */,
 			);
 			path = OpenCVTest;
 			sourceTree = "<group>";
@@ -1126,8 +1136,10 @@
 				B96CA1322D9E7E130097130C /* OPCVEffectROIVC.mm in Sources */,
 				B9A7F15A2D9FEB23009D3CB3 /* OPCVEffectOpenVC.mm in Sources */,
 				B96CA1282D9D05250097130C /* OPOpenCVTableVC.m in Sources */,
+				B90133B22DB4F4C000FA493E /* OPCVEffectLowpassVC.mm in Sources */,
 				B9A7F1642DA02B46009D3CB3 /* OPCVEffectTophatVC.mm in Sources */,
 				B920A5102C70AC7D005F4F9C /* OPFilterGPUView.mm in Sources */,
+				B90133AC2DB4BC9700FA493E /* OPCVEffectHighpassVC.mm in Sources */,
 				B91BB5552C7B94C500A2CE7B /* OPFaceImageFilter.mm in Sources */,
 				B9A7F16A2DA0D72C009D3CB3 /* OPCVEffectSobelVC.mm in Sources */,
 				B9A7F1422D9FBCD6009D3CB3 /* OPCVEffectChannelVC.mm in Sources */,

@@ -25,6 +25,8 @@
 #import "OPCVEffectBlackhatVC.h"
 #import "OPCVEffectSobelVC.h"
 #import "OPCVEffectHoughLinesVC.h"
+#import "OPCVEffectHighpassVC.h"
+#import "OPCVEffectLowpassVC.h"
 
 @interface OPOpenCVModel : NSObject
 
@@ -147,7 +149,15 @@
     model16.title = @"HoughLines直线检测";
     model16.cls = OPCVEffectHoughLinesVC.class;
     
-    return @[model1, model2, model3, model4, model5, model6, model7, model8, model9, model10, model11, model12, model13, model14, model15, model16];
+    OPOpenCVModel *model17 = [[OPOpenCVModel alloc] init];
+    model17.title = @"DCT高通";
+    model17.cls = OPCVEffectHighpassVC.class;
+    
+    OPOpenCVModel *model18 = [[OPOpenCVModel alloc] init];
+    model18.title = @"DCT低通";
+    model18.cls = OPCVEffectLowpassVC.class;
+    
+    return @[model1, model2, model3, model4, model5, model6, model7, model8, model9, model10, model11, model12, model13, model14, model15, model16, model17, model18];
 }
 
 @end

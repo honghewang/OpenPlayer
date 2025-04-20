@@ -23,12 +23,14 @@
 }
 
 - (cv::Mat)effect:(cv::Mat&)mat {
-//    cv::Mat not_mat;
-//    cv::bitwise_not(mat, not_mat);
     cv::Mat eroded;
     cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3,3)); // Create 3x3 rectangular kernel (MORPH_RECT) for erosion operation
     cv::erode(mat, eroded, kernel);
     return eroded;
+    
+//    cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3,3));
+//    cv::morphologyEx(mat, mat, cv::MORPH_ERODE, kernel);
+//    return mat;
 }
 
 @end
