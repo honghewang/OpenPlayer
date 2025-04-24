@@ -10,6 +10,9 @@
 		312E29F9DE3D170979E31216 /* libPods-OpenPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77DDC4BA3DEAA7999B803C90 /* libPods-OpenPlayer.a */; };
 		B90133AC2DB4BC9700FA493E /* OPCVEffectHighpassVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B90133AB2DB4BC9700FA493E /* OPCVEffectHighpassVC.mm */; };
 		B90133B22DB4F4C000FA493E /* OPCVEffectLowpassVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B90133B12DB4F4C000FA493E /* OPCVEffectLowpassVC.mm */; };
+		B90133B52DB54B6F00FA493E /* OPCVEffectEqualizeHistVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B90133B32DB54B6F00FA493E /* OPCVEffectEqualizeHistVC.mm */; };
+		B90133B72DB5B02300FA493E /* hist.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B90133B62DB5B02300FA493E /* hist.jpeg */; };
+		B90133BA2DB64B2600FA493E /* OPCVEffectCLAHEVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B90133B92DB64B2600FA493E /* OPCVEffectCLAHEVC.mm */; };
 		B9071DD02C3A6784007008F1 /* OPOpenCVTestVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B9071DCF2C3A6784007008F1 /* OPOpenCVTestVC.mm */; };
 		B9071DD42C3BD6CC007008F1 /* libdlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9071DD32C3BD6CC007008F1 /* libdlib.a */; };
 		B9071DD62C3BDDBD007008F1 /* face.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B9071DD52C3BDDBD007008F1 /* face.jpeg */; };
@@ -122,6 +125,11 @@
 		B90133AD2DB4BCB300FA493E /* OPCVEffectHighpassVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPCVEffectHighpassVC.h; sourceTree = "<group>"; };
 		B90133B02DB4F4C000FA493E /* OPCVEffectLowpassVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPCVEffectLowpassVC.h; sourceTree = "<group>"; };
 		B90133B12DB4F4C000FA493E /* OPCVEffectLowpassVC.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OPCVEffectLowpassVC.mm; sourceTree = "<group>"; };
+		B90133B32DB54B6F00FA493E /* OPCVEffectEqualizeHistVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OPCVEffectEqualizeHistVC.mm; sourceTree = "<group>"; };
+		B90133B42DB54B6F00FA493E /* OPCVEffectEqualizeHistVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPCVEffectEqualizeHistVC.h; sourceTree = "<group>"; };
+		B90133B62DB5B02300FA493E /* hist.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hist.jpeg; sourceTree = "<group>"; };
+		B90133B82DB64B2600FA493E /* OPCVEffectCLAHEVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPCVEffectCLAHEVC.h; sourceTree = "<group>"; };
+		B90133B92DB64B2600FA493E /* OPCVEffectCLAHEVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OPCVEffectCLAHEVC.mm; sourceTree = "<group>"; };
 		B9071DCE2C3A6784007008F1 /* OPOpenCVTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPOpenCVTestVC.h; sourceTree = "<group>"; };
 		B9071DCF2C3A6784007008F1 /* OPOpenCVTestVC.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OPOpenCVTestVC.mm; sourceTree = "<group>"; };
 		B9071DD32C3BD6CC007008F1 /* libdlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libdlib.a; sourceTree = "<group>"; };
@@ -854,6 +862,7 @@
 		B96CA1292D9E3B260097130C /* OpenCVTest */ = {
 			isa = PBXGroup;
 			children = (
+				B90133B62DB5B02300FA493E /* hist.jpeg */,
 				B9A7F1732DA4EC72009D3CB3 /* longzi.jpg */,
 				B9A7F1682DA0D72B009D3CB3 /* OPCVEffectSobelVC.h */,
 				B9A7F1692DA0D72B009D3CB3 /* OPCVEffectSobelVC.mm */,
@@ -892,6 +901,10 @@
 				B90133AB2DB4BC9700FA493E /* OPCVEffectHighpassVC.mm */,
 				B90133B02DB4F4C000FA493E /* OPCVEffectLowpassVC.h */,
 				B90133B12DB4F4C000FA493E /* OPCVEffectLowpassVC.mm */,
+				B90133B42DB54B6F00FA493E /* OPCVEffectEqualizeHistVC.h */,
+				B90133B32DB54B6F00FA493E /* OPCVEffectEqualizeHistVC.mm */,
+				B90133B82DB64B2600FA493E /* OPCVEffectCLAHEVC.h */,
+				B90133B92DB64B2600FA493E /* OPCVEffectCLAHEVC.mm */,
 			);
 			path = OpenCVTest;
 			sourceTree = "<group>";
@@ -1034,6 +1047,7 @@
 				B9071DD62C3BDDBD007008F1 /* face.jpeg in Resources */,
 				B9929AD52C43AB300004CF03 /* haarcascade_frontalface_default.xml in Resources */,
 				B9989DB72C4A1B8100B174C5 /* haarcascade_frontalface_alt.xml in Resources */,
+				B90133B72DB5B02300FA493E /* hist.jpeg in Resources */,
 				B9071DE12C3C230E007008F1 /* shape_predictor_68_face_landmarks.dat in Resources */,
 				B91BB5612C7B9AD100A2CE7B /* shaderf.glsl in Resources */,
 				B9A7F1742DA4EC72009D3CB3 /* longzi.jpg in Resources */,
@@ -1105,10 +1119,12 @@
 				B9071DEB2C3E44AA007008F1 /* OPFilterProgramManager.cpp in Sources */,
 				B9F001912C96EAA4009BF7CA /* OPFilterInputMat.cpp in Sources */,
 				B931BAD92C1576C4000AAFAE /* OPPlayer.cpp in Sources */,
+				B90133BA2DB64B2600FA493E /* OPCVEffectCLAHEVC.mm in Sources */,
 				B9071DF12C3E4587007008F1 /* OPFilterFrameBufferCache.cpp in Sources */,
 				B9E311EF2C81BEFC0031A5B7 /* OPCaptureSystem.m in Sources */,
 				B9A7F1522D9FDFE4009D3CB3 /* OPCVEffectErodeVC.mm in Sources */,
 				B9A7F1492D9FC1E2009D3CB3 /* OPCVEffectBlendVC.mm in Sources */,
+				B90133B52DB54B6F00FA493E /* OPCVEffectEqualizeHistVC.mm in Sources */,
 				B931BAE52C1CB052000AAFAE /* OPPacketQueue.cpp in Sources */,
 				B931BA0D2C0FEC19000AAFAE /* OPPlayerVC.m in Sources */,
 				B91BB5692C8011B600A2CE7B /* OPCameraViewController.mm in Sources */,

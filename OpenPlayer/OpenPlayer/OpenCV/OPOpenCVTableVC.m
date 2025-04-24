@@ -27,6 +27,8 @@
 #import "OPCVEffectHoughLinesVC.h"
 #import "OPCVEffectHighpassVC.h"
 #import "OPCVEffectLowpassVC.h"
+#import "OPCVEffectEqualizeHistVC.h"
+#import "OPCVEffectCLAHEVC.h"
 
 @interface OPOpenCVModel : NSObject
 
@@ -157,7 +159,17 @@
     model18.title = @"DCT低通";
     model18.cls = OPCVEffectLowpassVC.class;
     
-    return @[model1, model2, model3, model4, model5, model6, model7, model8, model9, model10, model11, model12, model13, model14, model15, model16, model17, model18];
+    OPOpenCVModel *model19 = [[OPOpenCVModel alloc] init];
+    model19.title = @"直方图均衡";
+    model19.cls = OPCVEffectEqualizeHistVC.class;
+    
+    
+    OPOpenCVModel *model20 = [[OPOpenCVModel alloc] init];
+    model20.title = @"自适应直方图均衡";
+    model20.cls = OPCVEffectCLAHEVC.class;
+    
+    
+    return @[model1, model2, model3, model4, model5, model6, model7, model8, model9, model10, model11, model12, model13, model14, model15, model16, model17, model18, model19, model20];
 }
 
 @end

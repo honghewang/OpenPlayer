@@ -31,7 +31,8 @@
                      0, evenCols - gray.cols,
                      cv::BORDER_CONSTANT, cv::Scalar::all(0));
     
-    cv::Mat filter = cv::Mat::ones(channelPadded.size(), CV_32F);
+    cv::Mat filter = cv::Mat::ones(channelPadded.size(), CV_32F);    
+
     for(int i=0; i<100; i++) {
         for(int j=0; j<100; j++) {
             filter.at<float>(i,j) = 0.0;
