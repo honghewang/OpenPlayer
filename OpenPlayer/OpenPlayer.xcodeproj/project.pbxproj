@@ -72,6 +72,10 @@
 		B950FDD82BE9E605000C45D0 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B950FDD72BE9E605000C45D0 /* TableViewCell.m */; };
 		B950FDDF2BE9EACF000C45D0 /* OPDecoderTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B950FDDE2BE9EACF000C45D0 /* OPDecoderTestVC.m */; };
 		B950FDE42BE9EDE2000C45D0 /* OPDecoderView.mm in Sources */ = {isa = PBXBuildFile; fileRef = B950FDE32BE9EDE2000C45D0 /* OPDecoderView.mm */; };
+		B95BD0D12DBF060A00D2EEDC /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95BD0D02DBF060A00D2EEDC /* opencv2.framework */; };
+		B95BD0D42DBF95B800D2EEDC /* OPCVEffectFeatureMatchVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B95BD0D32DBF95B800D2EEDC /* OPCVEffectFeatureMatchVC.mm */; };
+		B95BD0D62DBF9E4D00D2EEDC /* scene.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B95BD0D52DBF9E4D00D2EEDC /* scene.jpg */; };
+		B95BD0D82DBF9E5A00D2EEDC /* query.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B95BD0D72DBF9E5A00D2EEDC /* query.jpg */; };
 		B95DBC7C2C75D4AD0049544C /* face2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B95DBC7B2C75D4AD0049544C /* face2.jpeg */; };
 		B96CA1282D9D05250097130C /* OPOpenCVTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B96CA1272D9D05250097130C /* OPOpenCVTableVC.m */; };
 		B96CA12C2D9E3C6E0097130C /* OPCVEffectBaseVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = B96CA12B2D9E3C6E0097130C /* OPCVEffectBaseVC.mm */; };
@@ -341,6 +345,11 @@
 		B950FDE02BE9ED47000C45D0 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		B950FDE22BE9EDE2000C45D0 /* OPDecoderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPDecoderView.h; sourceTree = "<group>"; };
 		B950FDE32BE9EDE2000C45D0 /* OPDecoderView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OPDecoderView.mm; sourceTree = "<group>"; };
+		B95BD0D02DBF060A00D2EEDC /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		B95BD0D22DBF95B800D2EEDC /* OPCVEffectFeatureMatchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPCVEffectFeatureMatchVC.h; sourceTree = "<group>"; };
+		B95BD0D32DBF95B800D2EEDC /* OPCVEffectFeatureMatchVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OPCVEffectFeatureMatchVC.mm; sourceTree = "<group>"; };
+		B95BD0D52DBF9E4D00D2EEDC /* scene.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = scene.jpg; sourceTree = "<group>"; };
+		B95BD0D72DBF9E5A00D2EEDC /* query.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = query.jpg; sourceTree = "<group>"; };
 		B95DBC7B2C75D4AD0049544C /* face2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = face2.jpeg; sourceTree = "<group>"; };
 		B96CA1262D9D05250097130C /* OPOpenCVTableVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OPOpenCVTableVC.h; sourceTree = "<group>"; };
 		B96CA1272D9D05250097130C /* OPOpenCVTableVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OPOpenCVTableVC.m; sourceTree = "<group>"; };
@@ -420,6 +429,7 @@
 				B912F7CC2BEDD3EE0070F241 /* libswresample.a in Frameworks */,
 				B9071DD42C3BD6CC007008F1 /* libdlib.a in Frameworks */,
 				B912F7C82BEDD3EE0070F241 /* libavfilter.a in Frameworks */,
+				B95BD0D12DBF060A00D2EEDC /* opencv2.framework in Frameworks */,
 				B9FFCC402BED9C5E005EF81E /* AVFoundation.framework in Frameworks */,
 				B912F7CA2BEDD3EE0070F241 /* libavformat.a in Frameworks */,
 				B9FFCC3E2BED9BA8005EF81E /* CoreMedia.framework in Frameworks */,
@@ -728,6 +738,7 @@
 		B920A5192C71DAFC005F4F9C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B95BD0D02DBF060A00D2EEDC /* opencv2.framework */,
 				B9989DB82C4A1BCE00B174C5 /* haarcascade_frontalface_alt2.xml */,
 				B9989DB62C4A1B8100B174C5 /* haarcascade_frontalface_alt.xml */,
 				B9929AD42C43AB2F0004CF03 /* haarcascade_frontalface_default.xml */,
@@ -862,6 +873,10 @@
 		B96CA1292D9E3B260097130C /* OpenCVTest */ = {
 			isa = PBXGroup;
 			children = (
+				B95BD0D72DBF9E5A00D2EEDC /* query.jpg */,
+				B95BD0D52DBF9E4D00D2EEDC /* scene.jpg */,
+				B95BD0D22DBF95B800D2EEDC /* OPCVEffectFeatureMatchVC.h */,
+				B95BD0D32DBF95B800D2EEDC /* OPCVEffectFeatureMatchVC.mm */,
 				B90133B62DB5B02300FA493E /* hist.jpeg */,
 				B9A7F1732DA4EC72009D3CB3 /* longzi.jpg */,
 				B9A7F1682DA0D72B009D3CB3 /* OPCVEffectSobelVC.h */,
@@ -1047,8 +1062,10 @@
 				B9071DD62C3BDDBD007008F1 /* face.jpeg in Resources */,
 				B9929AD52C43AB300004CF03 /* haarcascade_frontalface_default.xml in Resources */,
 				B9989DB72C4A1B8100B174C5 /* haarcascade_frontalface_alt.xml in Resources */,
+				B95BD0D62DBF9E4D00D2EEDC /* scene.jpg in Resources */,
 				B90133B72DB5B02300FA493E /* hist.jpeg in Resources */,
 				B9071DE12C3C230E007008F1 /* shape_predictor_68_face_landmarks.dat in Resources */,
+				B95BD0D82DBF9E5A00D2EEDC /* query.jpg in Resources */,
 				B91BB5612C7B9AD100A2CE7B /* shaderf.glsl in Resources */,
 				B9A7F1742DA4EC72009D3CB3 /* longzi.jpg in Resources */,
 				B91BB5622C7B9AD100A2CE7B /* shaderv.glsl in Resources */,
@@ -1146,6 +1163,7 @@
 				B931BAD62C1573BD000AAFAE /* OPPlayerContext.cpp in Sources */,
 				B931BADC2C16AA38000AAFAE /* OPFFmpegManager.cpp in Sources */,
 				B920A5182C71BD1B005F4F9C /* OPFilterProcess.cpp in Sources */,
+				B95BD0D42DBF95B800D2EEDC /* OPCVEffectFeatureMatchVC.mm in Sources */,
 				B991E8862CEB3588002D405A /* OPSegTorchModule.mm in Sources */,
 				B9071DE02C3C13BA007008F1 /* OPCVPredictor.cpp in Sources */,
 				B91BB5652C7D760800A2CE7B /* OPFilterTextureFilter.cpp in Sources */,
@@ -1325,6 +1343,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4S63X6K6X3;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OpenPlayer/Frameworks",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1353,6 +1375,7 @@
 					"\"$(SRCROOT)/OpenPlayer/Frameworks/FFmpeg-iOS/lib\"",
 					"$(PROJECT_DIR)/OpenPlayer/Frameworks",
 					"$(PROJECT_DIR)/OpenPlayer/Frameworks/libtorch_x86_64/lib",
+					"$(SRCROOT)/OpenPlayer/Frameworks/opencv2.framework/Headers",
 				);
 				MARKETING_VERSION = 1.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1385,6 +1408,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4S63X6K6X3;
 				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OpenPlayer/Frameworks",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1413,6 +1440,7 @@
 					"\"$(SRCROOT)/OpenPlayer/Frameworks/FFmpeg-iOS/lib\"",
 					"$(PROJECT_DIR)/OpenPlayer/Frameworks",
 					"$(PROJECT_DIR)/OpenPlayer/Frameworks/libtorch_x86_64/lib",
+					"$(SRCROOT)/OpenPlayer/Frameworks/opencv2.framework/Headers",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (

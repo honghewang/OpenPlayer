@@ -8,7 +8,7 @@ target 'OpenPlayer' do
 #  use_frameworks!
   pod 'Masonry', '1.1.0'
   pod 'SDL2', '3.2.0'
-  pod 'OpenCV', '4.3.0'
+#  pod 'OpenCV', '4.3.0'
   pod 'GPUImage', '0.1.7'
   pod 'LibTorch', '2.1.0'
 end

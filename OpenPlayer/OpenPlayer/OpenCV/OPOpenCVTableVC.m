@@ -29,6 +29,7 @@
 #import "OPCVEffectLowpassVC.h"
 #import "OPCVEffectEqualizeHistVC.h"
 #import "OPCVEffectCLAHEVC.h"
+#import "OPCVEffectFeatureMatchVC.h"
 
 @interface OPOpenCVModel : NSObject
 
@@ -168,8 +169,12 @@
     model20.title = @"自适应直方图均衡";
     model20.cls = OPCVEffectCLAHEVC.class;
     
+    OPOpenCVModel *model21 = [[OPOpenCVModel alloc] init];
+    model21.title = @"特征匹配";
+    model21.cls = OPCVEffectFeatureMatchVC.class;
     
-    return @[model1, model2, model3, model4, model5, model6, model7, model8, model9, model10, model11, model12, model13, model14, model15, model16, model17, model18, model19, model20];
+    
+    return @[model1, model2, model3, model4, model5, model6, model7, model8, model9, model10, model11, model12, model13, model14, model15, model16, model17, model18, model19, model20, model21];
 }
 
 @end
